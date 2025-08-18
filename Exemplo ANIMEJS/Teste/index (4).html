@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Colmeia Animada</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<svg id="scene" viewBox="0 0 512 512">
+  <!-- Colmeia -->
+  <g id="hive" stroke="#5A3B00" stroke-width="8" stroke-linejoin="round">
+    <path class="layer" d="M120 370 Q80 370 80 330 Q80 280 160 260 Q256 240 352 260 Q432 280 432 330 Q432 370 392 370 Z" fill="#F4B42A" />
+    <path class="layer" d="M140 300 Q100 300 100 260 Q100 210 180 190 Q256 175 332 190 Q412 210 412 260 Q412 300 372 300 Z" fill="#F4B42A" />
+    <path class="layer" d="M160 230 Q120 230 120 200 Q120 160 190 145 Q256 130 322 145 Q392 160 392 200 Q392 230 352 230 Z" fill="#F4B42A" />
+    <path class="layer" d="M180 170 Q150 170 150 150 Q150 120 200 110 Q256 100 312 110 Q362 120 362 150 Q362 170 332 170 Z" fill="#F4B42A" />
+    <ellipse id="hole" cx="256" cy="260" rx="38" ry="28" fill="#3B2A00" stroke="none"/>
+  </g>
+
+  <!-- Caminho da abelha -->
+  <path id="path" d="M 50 450 C 150 350, 350 350, 450 450" fill="none" stroke="transparent"/>
+</svg>
+
+<!-- Abelha -->
+<svg id="bee" viewBox="0 0 50 50">
+  <circle cx="25" cy="25" r="10" fill="gold"/>
+</svg>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+<script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,637 @@
+'use client';
+
+import React, { useState, useEffect } from 'react';
+import { motion } from 'framer-motion';
+import { Button } from '@/components/ui/button';
+import { Badge } from '@/components/ui/badge';
+import { Plus, Minus, Wallet, ExternalLink, Star, Sparkles } from 'lucide-react';
+import { useAccount, useConnect, useDisconnect, useBalance, useWriteContract, useWaitForTransactionReceipt, useReadContract } from 'wagmi';
+import { parseEther, formatEther } from 'viem';
+import { ConnectButton } from '@rainbow-me/rainbowkit';
+
+// Contratos na Linea Sepolia
+const NFT_CONTRACT = '0x9194c5152315C5523Da5FF6Fa53c3F21E29CaD58';
+const SALE_CONTRACT = '0x3AFE637796B7F33de7BDaa3784c0701EC1fc3213';
+const LINEA_SEPOLIA_CHAIN_ID = 59141;
+
+// ABIs mínimos
+const saleAbi = [
+  {
+    name: 'mintPremium',
+    type: 'function',
+    stateMutability: 'payable',
+    inputs: [{ name: 'qty', type: 'uint256' }],
+    outputs: [],
+  },
+  {
+    name: 'mintStarter',
+    type: 'function',
+    stateMutability: 'payable',
+    inputs: [{ name: 'qty', type: 'uint256' }],
+    outputs: [],
+  },
+  {
+    name: 'saleActive',
+    type: 'function',
+    stateMutability: 'view',
+    inputs: [],
+    outputs: [{ name: '', type: 'bool' }],
+  },
+  {
+    name: 'PREMIUM_PRICE',
+    type: 'function',
+    stateMutability: 'view',
+    inputs: [],
+    outputs: [{ name: '', type: 'uint256' }],
+  },
+  {
+    name: 'STARTER_PRICE',
+    type: 'function',
+    stateMutability: 'view',
+    inputs: [],
+    outputs: [{ name: '', type: 'uint256' }],
+  },
+  {
+    name: 'mintedPerAddress',
+    type: 'function',
+    stateMutability: 'view',
+    inputs: [
+      { name: '', type: 'address' },
+      { name: '', type: 'uint8' }
+    ],
+    outputs: [{ name: '', type: 'uint256' }],
+  },
+  {
+    name: 'toggleSale',
+    type: 'function',
+    stateMutability: 'nonpayable',
+    inputs: [],
+    outputs: [],
+  },
+  {
+    name: 'owner',
+    type: 'function',
+    stateMutability: 'view',
+    inputs: [],
+    outputs: [{ name: '', type: 'address' }],
+  },
+] as const;
+
+const nftAbi = [
+  {
+    name: 'remainingPremium',
+    type: 'function',
+    stateMutability: 'view',
+    inputs: [],
+    outputs: [{ name: '', type: 'uint256' }],
+  },
+  {
+    name: 'remainingStarter',
+    type: 'function',
+    stateMutability: 'view',
+    inputs: [],
+    outputs: [{ name: '', type: 'uint256' }],
+  },
+] as const;
+
+const MintWidget = () => {
+  const [mounted, setMounted] = useState(false);
+  
+  // Estados da UI
+  const [quantity, setQuantity] = useState(1);
+  const [selectedBundle, setSelectedBundle] = useState<'premium' | 'starter'>('premium');
+  const [error, setError] = useState('');
+  const [success, setSuccess] = useState('');
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  const { address, isConnected, chain } = useAccount();
+  const { data: balance } = useBalance({ address });
+
+  // Leitura dos contratos
+  const { data: saleActive } = useReadContract({
+    address: SALE_CONTRACT,
+    abi: saleAbi,
+    functionName: 'saleActive',
+  });
+
+  const { data: premiumPrice } = useReadContract({
+    address: SALE_CONTRACT,
+    abi: saleAbi,
+    functionName: 'PREMIUM_PRICE',
+  });
+
+  const { data: starterPrice } = useReadContract({
+    address: SALE_CONTRACT,
+    abi: saleAbi,
+    functionName: 'STARTER_PRICE',
+  });
+
+  const { data: remainingPremium } = useReadContract({
+    address: NFT_CONTRACT,
+    abi: nftAbi,
+    functionName: 'remainingPremium',
+  });
+
+  const { data: remainingStarter } = useReadContract({
+    address: NFT_CONTRACT,
+    abi: nftAbi,
+    functionName: 'remainingStarter',
+  });
+
+  const { data: premiumMinted } = useReadContract({
+    address: SALE_CONTRACT,
+    abi: saleAbi,
+    functionName: 'mintedPerAddress',
+    args: address ? [address, 1] : undefined,
+  });
+
+  const { data: starterMinted } = useReadContract({
+    address: SALE_CONTRACT,
+    abi: saleAbi,
+    functionName: 'mintedPerAddress',
+    args: address ? [address, 2] : undefined,
+  });
+
+  const { data: contractOwner } = useReadContract({
+    address: SALE_CONTRACT,
+    abi: saleAbi,
+    functionName: 'owner',
+  });
+
+  // Escrita nos contratos
+  const { writeContract, data: hash, isPending, error: writeError } = useWriteContract();
+
+  const { isLoading: isConfirming, isSuccess: isConfirmed } = useWaitForTransactionReceipt({
+    hash,
+  });
+
+  // Bundles config
+  const bundles = {
+    premium: {
+      name: 'Premium Bundle',
+      nfts: 10,
+      price: premiumPrice ? formatEther(premiumPrice) : '0',
+      available: remainingPremium ? Number(remainingPremium) : 0,
+      minted: premiumMinted ? Number(premiumMinted) : 0,
+      maxPerWallet: 10,
+      rewards: ['Exclusive Discord Role', 'Early Access to Future Drops', 'Physical Fluffy Bear Plushie', 'Whitelist for Season 2']
+    },
+    starter: {
+      name: 'Starter Bundle',
+      nfts: 5,
+      price: starterPrice ? formatEther(starterPrice) : '0',
+      available: remainingStarter ? Number(remainingStarter) : 0,
+      minted: starterMinted ? Number(starterMinted) : 0,
+      maxPerWallet: 10,
+      rewards: ['Discord Access', 'Staking Bonus +20%', 'Bundle Holder Badge']
+    }
+  };
+
+  const currentBundle = bundles[selectedBundle];
+
+  // Funções
+  const handleQuantityChange = (change: number) => {
+    const newQuantity = quantity + change;
+    const maxAllowed = Math.min(currentBundle.maxPerWallet - currentBundle.minted, currentBundle.available);
+    if (newQuantity >= 1 && newQuantity <= maxAllowed) {
+      setQuantity(newQuantity);
+    }
+  };
+
+  const handleMint = async () => {
+    if (!isConnected || !address) {
+      setError('Conecte sua carteira primeiro');
+      return;
+    }
+
+    if (chain?.id !== LINEA_SEPOLIA_CHAIN_ID) {
+      setError('Troque para Linea Sepolia no MetaMask');
+      return;
+    }
+
+    if (!saleActive) {
+      setError('Venda não está ativa');
+      return;
+    }
+
+    try {
+      setError('');
+      setSuccess('');
+
+      const price = selectedBundle === 'premium' ? premiumPrice : starterPrice;
+      if (!price) {
+        setError('Erro ao obter preço');
+        return;
+      }
+
+      const totalCost = price * BigInt(quantity);
+
+      // Verificações
+      if (currentBundle.minted + quantity > currentBundle.maxPerWallet) {
+        setError(`Limite excedido. Você já mintou ${currentBundle.minted} e o máximo é ${currentBundle.maxPerWallet} por wallet.`);
+        return;
+      }
+
+      if (currentBundle.available < quantity) {
+        setError(`Supply insuficiente. Restam apenas ${currentBundle.available} NFTs.`);
+        return;
+      }
+
+      // Executar mint
+      if (selectedBundle === 'premium') {
+        writeContract({
+          address: SALE_CONTRACT,
+          abi: saleAbi,
+          functionName: 'mintPremium',
+          args: [BigInt(quantity)],
+          value: totalCost,
+        });
+      } else {
+        writeContract({
+          address: SALE_CONTRACT,
+          abi: saleAbi,
+          functionName: 'mintStarter',
+          args: [BigInt(quantity)],
+          value: totalCost,
+        });
+      }
+
+    } catch (err: any) {
+      let errorMsg = 'Erro no mint: ';
+      
+      if (err.message?.includes('insufficient funds')) {
+        errorMsg += 'ETH insuficiente';
+      } else if (err.message?.includes('user rejected')) {
+        errorMsg += 'Transação cancelada pelo usuário';
+      } else {
+        errorMsg += err.message || 'Erro desconhecido';
+      }
+      
+      setError(errorMsg);
+    }
+  };
+
+  const handleToggleSale = async () => {
+    if (!isConnected || !address) {
+      setError('Conecte sua carteira primeiro');
+      return;
+    }
+
+    if (chain?.id !== LINEA_SEPOLIA_CHAIN_ID) {
+      setError('Troque para Linea Sepolia no MetaMask');
+      return;
+    }
+
+    if (address?.toLowerCase() !== contractOwner?.toLowerCase()) {
+      setError('Apenas o owner do contrato pode ativar/desativar a venda');
+      return;
+    }
+
+    try {
+      setError('');
+      setSuccess('');
+
+      writeContract({
+        address: SALE_CONTRACT,
+        abi: saleAbi,
+        functionName: 'toggleSale',
+        args: [],
+      });
+
+      setSuccess('Comando enviado para alterar status da venda...');
+
+    } catch (err: any) {
+      setError('Erro ao alterar status da venda: ' + (err.message || 'Erro desconhecido'));
+    }
+  };
+
+  // Efeitos para mostrar status da transação
+  useEffect(() => {
+    if (hash) {
+      setSuccess(`Transação enviada! Hash: ${hash}`);
+    }
+  }, [hash]);
+
+  useEffect(() => {
+    if (isConfirmed) {
+      setSuccess(`Mint realizado com sucesso!`);
+    }
+  }, [isConfirmed]);
+
+  useEffect(() => {
+    if (writeError) {
+      setError(writeError.message || 'Erro na transação');
+    }
+  }, [writeError]);
+
+  // Calcular preço total
+  const calculateTotal = () => {
+    const price = selectedBundle === 'premium' ? premiumPrice : starterPrice;
+    if (!price) return '0';
+    
+    const total = price * BigInt(quantity);
+    return formatEther(total);
+  };
+
+  // Verificar se pode mintar
+  const canMint = () => {
+    if (!isConnected || !saleActive || isPending || isConfirming) return false;
+    if (chain?.id !== LINEA_SEPOLIA_CHAIN_ID) return false;
+    
+    const maxAllowed = Math.min(currentBundle.maxPerWallet - currentBundle.minted, currentBundle.available);
+    return maxAllowed >= quantity;
+  };
+
+  // Aguardar montagem do componente para evitar problemas de SSR
+  if (!mounted) {
+    return (
+      <div className="min-h-screen bg-gradient-to-br from-amber-50 via-yellow-50 to-orange-50 pt-24 pb-12 flex items-center justify-center">
+        <div className="text-amber-800 text-xl">Carregando...</div>
+      </div>
+    );
+  }
+
+  return (
+    <div className="min-h-screen bg-gradient-to-br from-amber-50 via-yellow-50 to-orange-50 pt-24 pb-12">
+      {/* Background decorative elements */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        <div className="absolute top-20 left-10 w-32 h-32 bg-amber-200/30 rounded-full blur-3xl" />
+        <div className="absolute bottom-40 right-20 w-40 h-40 bg-yellow-200/40 rounded-full blur-3xl" />
+        <div className="absolute top-1/2 left-1/3 w-24 h-24 bg-orange-200/25 rounded-full blur-2xl" />
+      </div>
+
+      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        {/* Header */}
+        <motion.div
+          className="text-center mb-16"
+          initial={{ opacity: 0, y: -30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+        >
+          <motion.div
+            className="inline-flex items-center gap-2 bg-amber-100 text-amber-800 px-6 py-2 rounded-full text-sm font-medium mb-6"
+            animate={{ 
+              boxShadow: [
+                '0 0 20px rgba(245, 158, 11, 0.2)',
+                '0 0 30px rgba(245, 158, 11, 0.4)', 
+                '0 0 20px rgba(245, 158, 11, 0.2)'
+              ]
+            }}
+            transition={{ duration: 2, repeat: Infinity }}
+          >
+            <Sparkles className="w-4 h-4" />
+            <span>Fluffy Bears Presale - Linea Sepolia</span>
+            <Sparkles className="w-4 h-4" />
+          </motion.div>
+          
+          <h1 className="text-6xl md:text-8xl font-black mb-6 bg-gradient-to-r from-amber-600 via-yellow-500 to-orange-600 bg-clip-text text-transparent">
+            Mint NFTs
+          </h1>
+        </motion.div>
+
+        {/* Conexão da Wallet */}
+        <div className="bg-white/80 backdrop-blur-sm rounded-3xl p-8 shadow-2xl border border-amber-200 mb-8">
+          <div className="flex flex-col items-center gap-4 mb-6">
+            <ConnectButton />
+            
+            {isConnected && address && (
+              <div className="text-center">
+                <p className="text-amber-700">
+                  <strong>Saldo:</strong> {balance ? parseFloat(formatEther(balance.value)).toFixed(4) : '0'} ETH
+                </p>
+                <p className="text-sm text-amber-600">
+                  <strong>Rede:</strong> {chain?.id === LINEA_SEPOLIA_CHAIN_ID ? '✅ Linea Sepolia' : '❌ Rede incorreta'}
+                </p>
+              </div>
+            )}
+          </div>
+
+          {/* Aviso de rede incorreta */}
+          {isConnected && chain?.id !== LINEA_SEPOLIA_CHAIN_ID && (
+            <div className="bg-yellow-100 border border-yellow-300 rounded-xl p-4 mb-6">
+              <p className="text-yellow-800 text-center">
+                <strong>⚠️ Rede incorreta!</strong> Troque para Linea Sepolia no MetaMask
+              </p>
+            </div>
+          )}
+
+          {/* Status da Venda */}
+          {isConnected && (
+            <div className="grid md:grid-cols-2 gap-6 mb-8">
+              <div className="bg-amber-50 rounded-xl p-4">
+                <h3 className="text-lg font-bold text-amber-900 mb-3">Status da Venda</h3>
+                <p><strong>Venda Ativa:</strong> {saleActive ? '✅ Sim' : '❌ Não'}</p>
+                <p><strong>Premium Restantes:</strong> {remainingPremium?.toString() || '0'}</p>
+                <p><strong>Starter Restantes:</strong> {remainingStarter?.toString() || '0'}</p>
+                
+                {/* Botão Admin para ativar/desativar venda */}
+                {address?.toLowerCase() === contractOwner?.toLowerCase() && (
+                  <div className="mt-4 pt-3 border-t border-amber-200">
+                    <p className="text-xs text-amber-600 mb-2">🔧 Admin Controls</p>
+                    <Button
+                      onClick={handleToggleSale}
+                      disabled={isPending || isConfirming}
+                      className="w-full h-10 text-sm font-bold bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 disabled:opacity-50"
+                    >
+                      {isPending || isConfirming ? (
+                        'Processando...'
+                      ) : (
+                        saleActive ? 'Desativar Venda' : 'Ativar Venda'
+                      )}
+                    </Button>
+                  </div>
+                )}
+              </div>
+              
+              <div className="bg-amber-50 rounded-xl p-4">
+                <h3 className="text-lg font-bold text-amber-900 mb-3">Seus NFTs</h3>
+                <p><strong>Premium Mintados:</strong> {premiumMinted?.toString() || '0'}/10</p>
+                <p><strong>Starter Mintados:</strong> {starterMinted?.toString() || '0'}/10</p>
+                {contractOwner && (
+                  <div className="mt-3 pt-3 border-t border-amber-200">
+                    <p className="text-xs text-amber-600">
+                      <strong>Owner do Contrato:</strong><br />
+                      {contractOwner.slice(0, 6)}...{contractOwner.slice(-4)}
+                    </p>
+                    {address?.toLowerCase() === contractOwner?.toLowerCase() && (
+                      <p className="text-xs text-purple-600 font-bold mt-1">Você é o owner! 👑</p>
+                    )}
+                  </div>
+                )}
+              </div>
+            </div>
+          )}
+
+          {/* Seleção de Bundle */}
+          {isConnected && chain?.id === LINEA_SEPOLIA_CHAIN_ID && (
+            <div>
+              <div className="grid md:grid-cols-2 gap-4 mb-8">
+                {(Object.entries(bundles) as [keyof typeof bundles, typeof bundles[keyof typeof bundles]][]).map(([key, bundle]) => {
+                  const isSelected = selectedBundle === key;
+                  return (
+                    <motion.div
+                      key={key}
+                      className={`relative p-6 rounded-2xl border-2 cursor-pointer transition-all duration-300 ${
+                        isSelected 
+                          ? 'border-amber-400 bg-amber-50 shadow-lg' 
+                          : 'border-amber-200 bg-white/60 hover:border-amber-300'
+                      }`}
+                      onClick={() => {
+                        setSelectedBundle(key);
+                        setQuantity(1);
+                      }}
+                      whileHover={{ scale: 1.02 }}
+                      whileTap={{ scale: 0.98 }}
+                    >
+                      {isSelected && (
+                        <motion.div
+                          className="absolute top-4 right-4 w-6 h-6 bg-amber-500 rounded-full flex items-center justify-center"
+                          initial={{ scale: 0 }}
+                          animate={{ scale: 1 }}
+                          transition={{ type: "spring", duration: 0.3 }}
+                        >
+                          <span className="text-white text-sm font-bold">✓</span>
+                        </motion.div>
+                      )}
+                      
+                      <div className="text-center">
+                        <h3 className="text-xl font-bold text-amber-900 mb-2">{bundle.name}</h3>
+                        <div className="text-3xl font-black text-amber-800 mb-2">{bundle.nfts} NFTs</div>
+                        <div className="text-lg font-semibold text-amber-700 mb-2">{bundle.price} ETH</div>
+                        <div className="text-sm text-amber-600">
+                          Disponível: {bundle.available} | Seus: {bundle.minted}
+                        </div>
+                      </div>
+                    </motion.div>
+                  );
+                })}
+              </div>
+
+              {/* Controles de Mint */}
+              <div className="bg-white rounded-2xl p-6 border border-amber-200">
+                <h3 className="text-2xl font-bold text-amber-900 mb-6 text-center">
+                  {currentBundle.name}
+                </h3>
+
+                {/* Quantity Selector */}
+                <div className="mb-6">
+                  <label className="block text-sm font-medium text-amber-800 mb-4 text-center">
+                    Quantidade (Max {Math.min(currentBundle.maxPerWallet - currentBundle.minted, currentBundle.available)})
+                  </label>
+                  <div className="flex items-center justify-center gap-4 mb-4">
+                    <Button
+                      variant="outline"
+                      size="icon"
+                      onClick={() => handleQuantityChange(-1)}
+                      disabled={quantity <= 1}
+                      className="w-12 h-12 rounded-full border-amber-300 hover:border-amber-400 hover:bg-amber-50"
+                    >
+                      <Minus className="w-4 h-4" />
+                    </Button>
+                    
+                    <div className="w-20 h-12 bg-amber-100 rounded-full flex items-center justify-center">
+                      <span className="text-2xl font-bold text-amber-800">{quantity}</span>
+                    </div>
+                    
+                    <Button
+                      variant="outline"
+                      size="icon"
+                      onClick={() => handleQuantityChange(1)}
+                      disabled={quantity >= Math.min(currentBundle.maxPerWallet - currentBundle.minted, currentBundle.available)}
+                      className="w-12 h-12 rounded-full border-amber-300 hover:border-amber-400 hover:bg-amber-50"
+                    >
+                      <Plus className="w-4 h-4" />
+                    </Button>
+                  </div>
+
+                  <div className="text-center">
+                    <p className="text-lg font-bold text-amber-800 mb-2">
+                      Total: {calculateTotal()} ETH
+                    </p>
+                    <p className="text-sm text-amber-600">
+                      Você receberá {currentBundle.nfts * quantity} NFTs
+                    </p>
+                  </div>
+                </div>
+
+                {/* Mint Button */}
+                <Button
+                  onClick={handleMint}
+                  disabled={!canMint()}
+                  className="w-full h-14 text-lg font-bold bg-gradient-to-r from-green-500 to-emerald-500 hover:from-green-600 hover:to-emerald-600 text-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
+                >
+                  {isPending || isConfirming ? (
+                    <motion.div
+                      className="flex items-center"
+                      animate={{ opacity: [1, 0.5, 1] }}
+                      transition={{ duration: 1.5, repeat: Infinity }}
+                    >
+                      <Sparkles className="w-5 h-5 mr-2 animate-spin" />
+                      {isPending ? 'Enviando...' : 'Confirmando...'}
+                    </motion.div>
+                  ) : (
+                    <>
+                      <Sparkles className="w-5 h-5 mr-2" />
+                      Mint {quantity} {selectedBundle === 'premium' ? 'Premium' : 'Starter'}
+                    </>
+                  )}
+                </Button>
+
+                {/* Mensagens de Status */}
+                {error && (
+                  <div className="mt-4 p-4 bg-red-50 border border-red-200 rounded-xl text-red-700">
+                    {error}
+                  </div>
+                )}
+
+                {success && (
+                  <div className="mt-4 p-4 bg-green-50 border border-green-200 rounded-xl text-green-700">
+                    {success}
+                  </div>
+                )}
+
+                {hash && (
+                  <div className="mt-4 p-4 bg-blue-50 border border-blue-200 rounded-xl">
+                    <p className="text-blue-700 mb-2"><strong>Hash da Transação:</strong></p>
+                    <a 
+                      href={`https://sepolia.lineascan.build/tx/${hash}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-blue-600 hover:text-blue-800 underline break-all text-sm"
+                    >
+                      {hash}
+                    </a>
+                  </div>
+                )}
+
+                {/* Bundle Rewards */}
+                <div className="mt-8 pt-6 border-t border-amber-200">
+                  <h4 className="text-lg font-bold text-amber-900 mb-4 text-center">Recompensas Exclusivas</h4>
+                  <div className="space-y-2">
+                    {currentBundle.rewards.map((reward, index) => (
+                      <motion.div
+                        key={index}
+                        className="flex items-center gap-3 p-3 bg-amber-50 rounded-xl border border-amber-200"
+                        initial={{ opacity: 0, x: -20 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        transition={{ delay: index * 0.1 }}
+                      >
+                        <div className="w-2 h-2 bg-amber-500 rounded-full" />
+                        <span className="text-sm text-amber-800 font-medium">{reward}</span>
+                      </motion.div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </div>
+          )}
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default MintWidget;
