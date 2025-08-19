@@ -725,10 +725,9 @@ const Dashboard = () => {
                 Before staking, you need to approve the Fluffy Bears staking contract to manage your NFTs.
               </p>
               <motion.button
-                className="px-4 py-2 bg-amber-500 hover:bg-amber-600 text-white rounded-lg shadow"
-                whileHover={{ scale: 1.03 }}
-                whileTap={{ scale: 0.98 }}
+                className="px-4 py-2 bg-gray-400 text-white rounded-lg shadow cursor-not-allowed"
                 onClick={handleApprove}
+                disabled={true}
               >
                 Approve Staking Contract
               </motion.button>
