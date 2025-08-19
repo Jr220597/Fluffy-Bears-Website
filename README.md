@@ -36,4 +36,4 @@ yarn dev
 
 - `/app`: Next.js App Router pages and layouts
 - `/components`: Reusable UI components
-- `/public`: Static assets and images 
+- `/public`: Static assets and images # Trigger deploy
