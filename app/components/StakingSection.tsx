@@ -41,13 +41,13 @@ const StakingSection = () => {
   const detailedSections = [
     {
       title: 'Mint Process',
-      description: 'The initial sale (mint) revenue isn\'t spent but reinvested directly in BERA/BGT liquidity pools on Berachain, creating a sustainable economic foundation.',
+      description: 'The initial sale (mint) revenue isn\'t spent but reinvested directly in BERA/ETH liquidity pools on Berachain, creating a sustainable economic foundation.',
       icon: '💰',
       delay: 0.3
     },
     {
       title: 'Reward Generation',
-      description: 'The deposited liquidity automatically generates rewards in BGT (Berachain\'s governance token). These rewards are periodically reinvested to increase the staking balance, creating a compound interest effect.',
+      description: 'The deposited liquidity automatically generates rewards in ETH (Ethereum). These rewards are periodically reinvested to increase the staking balance, creating a compound interest effect.',
       icon: '📈',
       delay: 0.5
     },
@@ -92,12 +92,12 @@ const StakingSection = () => {
     {
       icon: "💰",
       title: "Mint Process",
-      description: "The initial sale (mint) revenue isn't spent but reinvested directly in BERA/BGT liquidity pools on Berachain, creating a sustainable economic foundation.",
+      description: "The initial sale (mint) revenue isn't spent but reinvested directly in BERA/ETH liquidity pools on Berachain, creating a sustainable economic foundation.",
     },
     {
       icon: "📈",
       title: "Reward Generation",
-      description: "The deposited liquidity automatically generates rewards in BGT (Berachain's governance token). These rewards are periodically reinvested to increase the staking balance, creating a compound interest effect.",
+      description: "The deposited liquidity automatically generates rewards in ETH (Ethereum). These rewards are periodically reinvested to increase the staking balance, creating a compound interest effect.",
     },
     {
       icon: "📊",

@@ -57,7 +57,7 @@ const PointsDisplay = ({ points, rewards, isLoading = false }: PointsDisplayProp
               {rewards}
             </span>
             <span className="ml-2 text-blue-700">
-              BGT
+              ETH
             </span>
           </div>
         )}
