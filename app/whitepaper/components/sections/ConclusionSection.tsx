@@ -99,27 +99,27 @@ export function ConclusionSection() {
               <ul className="space-y-2 text-sm">
                 <li className="flex items-center gap-2">
                   <div className="w-2 h-2 rounded-full bg-blue-500" />
-                  Ecossistema NFT auto-sustentável
+                  Self-sustaining NFT ecosystem
                 </li>
                 <li className="flex items-center gap-2">
                   <div className="w-2 h-2 rounded-full bg-blue-500" />
-                  Marca global reconhecida
+                  Recognized global brand
                 </li>
                 <li className="flex items-center gap-2">
                   <div className="w-2 h-2 rounded-full bg-blue-500" />
-                  Ecossistema de produtos completo
+                  Complete product ecosystem
                 </li>
                 <li className="flex items-center gap-2">
                   <div className="w-2 h-2 rounded-full bg-blue-500" />
-                  Plataforma educacional líder
+                  Leading educational platform
                 </li>
                 <li className="flex items-center gap-2">
                   <div className="w-2 h-2 rounded-full bg-blue-500" />
-                  Padrão para futuros projetos NFT
+                  Standard for future NFT projects
                 </li>
                 <li className="flex items-center gap-2">
                   <div className="w-2 h-2 rounded-full bg-blue-500" />
-                  Impacto positivo na sociedade
+                  Positive impact on society
                 </li>
               </ul>
             </CardContent>

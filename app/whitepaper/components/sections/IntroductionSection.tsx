@@ -35,7 +35,7 @@ export function IntroductionSection() {
             
             <div className="grid gap-4 md:grid-cols-3 mt-6">
               <div className="text-center p-4 rounded-lg bg-muted">
-                <div className="text-2xl font-bold text-primary">Exclusivos</div>
+                <div className="text-2xl font-bold text-primary">Exclusive</div>
                 <div className="text-sm text-muted-foreground">Unique NFTs</div>
               </div>
               <div className="text-center p-4 rounded-lg bg-muted">
