@@ -20,7 +20,7 @@ const ConnectWallet = () => {
 
       {isConnected && (
         <div className="hidden md:flex items-center text-amber-800 bg-amber-100 rounded-full px-3 py-1 text-sm">
-          <span className="ml-1">Linea Sepolia</span>
+          <span className="ml-1">Linea Mainnet</span>
         </div>
       )}
     </div>

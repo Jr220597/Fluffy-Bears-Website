@@ -6,24 +6,24 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { getDefaultConfig, RainbowKitProvider } from '@rainbow-me/rainbowkit';
 import '@rainbow-me/rainbowkit/styles.css';
 
-// Definindo a Linea Sepolia como uma chain customizada
-const lineaSepolia = {
-  id: 59141,
-  name: 'Linea Sepolia',
-  network: 'linea-sepolia',
+// Definindo a Linea Mainnet como uma chain customizada
+const lineaMainnet = {
+  id: 59144,
+  name: 'Linea Mainnet',
+  network: 'linea-mainnet',
   nativeCurrency: {
     decimals: 18,
     name: 'ETH',
     symbol: 'ETH',
   },
   rpcUrls: {
-    public: { http: ['https://rpc.sepolia.linea.build'] },
-    default: { http: ['https://rpc.sepolia.linea.build'] },
+    public: { http: ['https://rpc.linea.build'] },
+    default: { http: ['https://rpc.linea.build'] },
   },
   blockExplorers: {
     default: { 
-      name: 'Linea Sepolia Explorer', 
-      url: 'https://sepolia.lineascan.build' 
+      name: 'Linea Mainnet Explorer', 
+      url: 'https://lineascan.build' 
     },
   },
 };
@@ -32,9 +32,9 @@ const lineaSepolia = {
 const config = getDefaultConfig({
   appName: 'Fluffy Bears Presale',
   projectId: '1a30dfc4c6c266ac3709f2f3f6c9a395',
-  chains: [lineaSepolia],
+  chains: [lineaMainnet],
   transports: {
-    [lineaSepolia.id]: http('https://rpc.sepolia.linea.build')
+    [lineaMainnet.id]: http('https://rpc.linea.build')
   },
 });
 

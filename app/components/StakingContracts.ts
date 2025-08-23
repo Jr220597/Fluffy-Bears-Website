@@ -1,8 +1,8 @@
-// Endereços dos contratos
-export const NFT_CONTRACT_ADDRESS = '0x1f77a59613Dcd133E448F936566ac74c7Cd5df2c';
+// Contract Addresses
+export const NFT_CONTRACT_ADDRESS = '0x4fAE020922b41481108002BAd45299B076B22abD';
 export const STAKING_CONTRACT_ADDRESS = '0x2590D595ae814dA5B480eF896C3f668bE5c9B698';
 
-// ERC-721 ABI mínimo para interação básica
+// Minimal ERC-721 ABI for basic interaction
 export const NFT_ABI = [
   // balanceOf
   {
@@ -52,7 +52,7 @@ export const NFT_ABI = [
   },
 ];
 
-// ABI do contrato de staking
+// Staking contract ABI
 export const STAKING_ABI = [
   // stake
   {

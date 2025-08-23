@@ -54,7 +54,7 @@ const Dashboard = () => {
   const [activeTab, setActiveTab] = useState('ownedNFTs');
   const [txSuccessMessage, setTxSuccessMessage] = useState('');
   const [txErrorMessage, setTxErrorMessage] = useState('');
-  const [infoMessage, setInfoMessage] = useState('Usando o getter público stakedTokens(address) para buscar NFTs em stake');
+  const [infoMessage, setInfoMessage] = useState('Using public getter stakedTokens(address) to fetch staked NFTs');
   
   // Helper function to get correct image path
   const getCorrectImagePath = (tokenId: string): string => {
@@ -181,9 +181,9 @@ const Dashboard = () => {
       setTxSuccessMessage('Staking successful!');
       setSelectedOwnedNFTs([]);
       
-      // Imediatamente atualizar as NFTs e pontos
+      // Immediately update NFTs and points
       setTimeout(() => {
-        console.log("Atualizando NFTs após stake bem-sucedido");
+        console.log("Updating NFTs after successful stake");
         fetchNFTs();
         refetchPoints();
         refetchRewards();
@@ -201,9 +201,9 @@ const Dashboard = () => {
       setTxSuccessMessage('Unstaking successful!');
       setSelectedStakedNFTs([]);
       
-      // Imediatamente atualizar as NFTs e pontos
+      // Immediately update NFTs and points
       setTimeout(() => {
-        console.log("Atualizando NFTs após unstake bem-sucedido");
+        console.log("Updating NFTs after successful unstake");
         fetchNFTs();
         refetchPoints();
         refetchRewards();
@@ -323,9 +323,9 @@ const Dashboard = () => {
         console.log("Verificando diretamente todos os IDs possíveis (0 a 21)...");
         for (let tokenId = 0; tokenId <= 21; tokenId++) {
           try {
-            // Primeiro, pular se o token estiver em stake
+            // First, skip if token is staked
             if (stakedTokenIds.includes(tokenId)) {
-              console.log(`ID ${tokenId} está em stake, ignorando da lista de owned`);
+              console.log(`ID ${tokenId} is staked, ignoring from owned list`);
               continue;
             }
             
@@ -411,12 +411,12 @@ const Dashboard = () => {
               const timeData = await timeUntilUnstakeRes.json();
               const timeUntilUnstake = typeof timeData.timeUntilUnstake === 'number' ? timeData.timeUntilUnstake : 0;
               
-              // Buscar os pontos individuais da NFT
-              console.log(`Buscando pontos para o token ${tokenId}...`);
+              // Fetch individual NFT points
+              console.log(`Fetching points for token ${tokenId}...`);
               const pointsRes = await fetch(`/api/staking/points?tokenId=${tokenId}&wallet=${address}`);
               const pointsData = await pointsRes.json();
               const points = pointsData.points || 0;
-              console.log(`Pontos para token ${tokenId}: ${points} (${typeof points})`);
+              console.log(`Points for token ${tokenId}: ${points} (${typeof points})`);
               
               // Process the image URL to ensure it's valid
               let imageUrl = metadata.image || '';
@@ -442,8 +442,8 @@ const Dashboard = () => {
                 console.log(`Using local image fallback for token ${tokenId}: ${imageUrl}`);
               }
               
-              // Verificação final dos pontos antes de adicionar
-              console.log(`NFT ${tokenId} pronta para ser adicionada - Pontos: ${points}`);
+              // Final points verification before adding
+              console.log(`NFT ${tokenId} ready to be added - Points: ${points}`);
               
               fetchedStakedNFTs.push({
                 tokenId: Number(tokenId),
@@ -456,15 +456,15 @@ const Dashboard = () => {
             } catch (metadataError) {
               console.error(`Error fetching metadata for token ${tokenId}:`, metadataError);
               
-              // Tentar buscar apenas os pontos mesmo sem metadata
+              // Try to fetch only points even without metadata
               let points = 0;
               try {
                 const pointsRes = await fetch(`/api/staking/points?tokenId=${tokenId}&wallet=${address}`);
                 const pointsData = await pointsRes.json();
                 points = pointsData.points || 0;
-                console.log(`Pontos para token ${tokenId} (fallback): ${points}`);
+                console.log(`Points for token ${tokenId} (fallback): ${points}`);
               } catch (pointsError) {
-                console.error(`Não foi possível obter pontos para token ${tokenId}:`, pointsError);
+                console.error(`Unable to get points for token ${tokenId}:`, pointsError);
               }
               
               // Fallback to using local image mapping
@@ -638,7 +638,7 @@ const Dashboard = () => {
             <img src="/Images/logotransparente.png" alt="Fluffy Bears" className="w-full h-full object-contain" />
           </div>
           <p className="text-amber-600 text-sm">
-            You'll need a compatible wallet (MetaMask, Rabby) connected to the Linea Sepolia Testnet.
+            You'll need a compatible wallet (MetaMask, Rabby) connected to the Linea Mainnet.
           </p>
         </div>
       </div>

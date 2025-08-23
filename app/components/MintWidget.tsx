@@ -9,12 +9,12 @@ import { useAccount, useConnect, useDisconnect, useBalance, useWriteContract, us
 import { parseEther, formatEther } from 'viem';
 import { ConnectButton } from '@rainbow-me/rainbowkit';
 
-// Contratos na Linea Sepolia
-const NFT_CONTRACT = '0x9194c5152315C5523Da5FF6Fa53c3F21E29CaD58';
-const SALE_CONTRACT = '0x3AFE637796B7F33de7BDaa3784c0701EC1fc3213';
-const LINEA_SEPOLIA_CHAIN_ID = 59141;
+// Contracts on Linea Mainnet
+const NFT_CONTRACT = '0x4fAE020922b41481108002BAd45299B076B22abD';
+const SALE_CONTRACT = '0xE67C03109B36BAdf098db753204305E00B7Df971';
+const LINEA_MAINNET_CHAIN_ID = 59144;
 
-// ABIs mínimos
+// Minimal ABIs
 const saleAbi = [
   {
     name: 'mintPremium',
@@ -61,20 +61,6 @@ const saleAbi = [
     ],
     outputs: [{ name: '', type: 'uint256' }],
   },
-  {
-    name: 'toggleSale',
-    type: 'function',
-    stateMutability: 'nonpayable',
-    inputs: [],
-    outputs: [],
-  },
-  {
-    name: 'owner',
-    type: 'function',
-    stateMutability: 'view',
-    inputs: [],
-    outputs: [{ name: '', type: 'address' }],
-  },
 ] as const;
 
 const nftAbi = [
@@ -97,7 +83,7 @@ const nftAbi = [
 const MintWidget = () => {
   const [mounted, setMounted] = useState(false);
   
-  // Estados da UI
+  // UI States
   const [quantity, setQuantity] = useState(1);
   const [selectedBundle, setSelectedBundle] = useState<'premium' | 'starter'>('premium');
   const [error, setError] = useState('');
@@ -110,7 +96,7 @@ const MintWidget = () => {
   const { address, isConnected, chain } = useAccount();
   const { data: balance } = useBalance({ address });
 
-  // Leitura dos contratos
+  // Contract reads
   const { data: saleActive } = useReadContract({
     address: SALE_CONTRACT,
     abi: saleAbi,
@@ -155,13 +141,7 @@ const MintWidget = () => {
     args: address ? [address, 2] : undefined,
   });
 
-  const { data: contractOwner } = useReadContract({
-    address: SALE_CONTRACT,
-    abi: saleAbi,
-    functionName: 'owner',
-  });
-
-  // Escrita nos contratos
+  // Contract writes
   const { writeContract, data: hash, isPending, error: writeError } = useWriteContract();
 
   const { isLoading: isConfirming, isSuccess: isConfirmed } = useWaitForTransactionReceipt({
@@ -177,7 +157,7 @@ const MintWidget = () => {
       available: remainingPremium ? Number(remainingPremium) : 0,
       minted: premiumMinted ? Number(premiumMinted) : 0,
       maxPerWallet: 10,
-      rewards: ['Exclusive Discord Role', 'Early Access to Future Drops', 'Physical Fluffy Bear Plushie', 'Whitelist for Season 2']
+      rewards: ['Exclusive Discord Role', 'Early Access to Future Drops', '3D Action Figure Fluffy Bear', '2 Free Mint Spots on Launch Day', '20% Mint Discount', 'Special Allocation for Future Fluffy Bears Token Launch']
     },
     starter: {
       name: 'Starter Bundle',
@@ -186,13 +166,13 @@ const MintWidget = () => {
       available: remainingStarter ? Number(remainingStarter) : 0,
       minted: starterMinted ? Number(starterMinted) : 0,
       maxPerWallet: 10,
-      rewards: ['Discord Access', 'Staking Bonus +20%', 'Bundle Holder Badge']
+      rewards: ['Exclusive Discord Role', '1 Free Mint Spot on Launch Day', '10% Mint Discount', '50% Off 1 Action Figure in Fluffy Bears Store', 'Special Allocation for Future Fluffy Bears Token Launch']
     }
   };
 
   const currentBundle = bundles[selectedBundle];
 
-  // Funções
+  // Functions
   const handleQuantityChange = (change: number) => {
     const newQuantity = quantity + change;
     const maxAllowed = Math.min(currentBundle.maxPerWallet - currentBundle.minted, currentBundle.available);
@@ -203,17 +183,17 @@ const MintWidget = () => {
 
   const handleMint = async () => {
     if (!isConnected || !address) {
-      setError('Conecte sua carteira primeiro');
+      setError('Please connect your wallet first');
       return;
     }
 
-    if (chain?.id !== LINEA_SEPOLIA_CHAIN_ID) {
-      setError('Troque para Linea Sepolia no MetaMask');
+    if (chain?.id !== LINEA_MAINNET_CHAIN_ID) {
+      setError('Switch to Linea Mainnet in MetaMask');
       return;
     }
 
     if (!saleActive) {
-      setError('Venda não está ativa');
+      setError('Sale is not active');
       return;
     }
 
@@ -223,24 +203,24 @@ const MintWidget = () => {
 
       const price = selectedBundle === 'premium' ? premiumPrice : starterPrice;
       if (!price) {
-        setError('Erro ao obter preço');
+        setError('Error getting price');
         return;
       }
 
       const totalCost = price * BigInt(quantity);
 
-      // Verificações
+      // Validations
       if (currentBundle.minted + quantity > currentBundle.maxPerWallet) {
-        setError(`Limite excedido. Você já mintou ${currentBundle.minted} e o máximo é ${currentBundle.maxPerWallet} por wallet.`);
+        setError(`Limit exceeded. You have already minted ${currentBundle.minted} and the maximum is ${currentBundle.maxPerWallet} per wallet.`);
         return;
       }
 
       if (currentBundle.available < quantity) {
-        setError(`Supply insuficiente. Restam apenas ${currentBundle.available} NFTs.`);
+        setError(`Insufficient supply. Only ${currentBundle.available} NFTs remaining.`);
         return;
       }
 
-      // Executar mint
+      // Execute mint
       if (selectedBundle === 'premium') {
         writeContract({
           address: SALE_CONTRACT,
@@ -260,74 +240,40 @@ const MintWidget = () => {
       }
 
     } catch (err: any) {
-      let errorMsg = 'Erro no mint: ';
+      let errorMsg = 'Mint error: ';
       
       if (err.message?.includes('insufficient funds')) {
-        errorMsg += 'ETH insuficiente';
+        errorMsg += 'Insufficient ETH';
       } else if (err.message?.includes('user rejected')) {
-        errorMsg += 'Transação cancelada pelo usuário';
+        errorMsg += 'Transaction cancelled by user';
       } else {
-        errorMsg += err.message || 'Erro desconhecido';
+        errorMsg += err.message || 'Unknown error';
       }
       
       setError(errorMsg);
     }
   };
 
-  const handleToggleSale = async () => {
-    if (!isConnected || !address) {
-      setError('Conecte sua carteira primeiro');
-      return;
-    }
-
-    if (chain?.id !== LINEA_SEPOLIA_CHAIN_ID) {
-      setError('Troque para Linea Sepolia no MetaMask');
-      return;
-    }
-
-    if (address?.toLowerCase() !== contractOwner?.toLowerCase()) {
-      setError('Apenas o owner do contrato pode ativar/desativar a venda');
-      return;
-    }
-
-    try {
-      setError('');
-      setSuccess('');
-
-      writeContract({
-        address: SALE_CONTRACT,
-        abi: saleAbi,
-        functionName: 'toggleSale',
-        args: [],
-      });
-
-      setSuccess('Comando enviado para alterar status da venda...');
-
-    } catch (err: any) {
-      setError('Erro ao alterar status da venda: ' + (err.message || 'Erro desconhecido'));
-    }
-  };
-
-  // Efeitos para mostrar status da transação
+  // Effects to show transaction status
   useEffect(() => {
     if (hash) {
-      setSuccess(`Transação enviada! Hash: ${hash}`);
+      setSuccess(`Transaction sent! Hash: ${hash}`);
     }
   }, [hash]);
 
   useEffect(() => {
     if (isConfirmed) {
-      setSuccess(`Mint realizado com sucesso!`);
+      setSuccess(`Mint successful!`);
     }
   }, [isConfirmed]);
 
   useEffect(() => {
     if (writeError) {
-      setError(writeError.message || 'Erro na transação');
+      setError(writeError.message || 'Transaction error');
     }
   }, [writeError]);
 
-  // Calcular preço total
+  // Calculate total price
   const calculateTotal = () => {
     const price = selectedBundle === 'premium' ? premiumPrice : starterPrice;
     if (!price) return '0';
@@ -336,20 +282,20 @@ const MintWidget = () => {
     return formatEther(total);
   };
 
-  // Verificar se pode mintar
+  // Check if can mint
   const canMint = () => {
     if (!isConnected || !saleActive || isPending || isConfirming) return false;
-    if (chain?.id !== LINEA_SEPOLIA_CHAIN_ID) return false;
+    if (chain?.id !== LINEA_MAINNET_CHAIN_ID) return false;
     
     const maxAllowed = Math.min(currentBundle.maxPerWallet - currentBundle.minted, currentBundle.available);
     return maxAllowed >= quantity;
   };
 
-  // Aguardar montagem do componente para evitar problemas de SSR
+  // Wait for component mount to avoid SSR issues
   if (!mounted) {
     return (
       <div className="min-h-screen bg-gradient-to-br from-amber-50 via-yellow-50 to-orange-50 pt-24 pb-12 flex items-center justify-center">
-        <div className="text-amber-800 text-xl">Carregando...</div>
+        <div className="text-amber-800 text-xl">Loading...</div>
       </div>
     );
   }
@@ -383,7 +329,7 @@ const MintWidget = () => {
             transition={{ duration: 2, repeat: Infinity }}
           >
             <Sparkles className="w-4 h-4" />
-            <span>Fluffy Bears Presale - Linea Sepolia</span>
+            <span>Fluffy Bears Presale - Linea Mainnet</span>
             <Sparkles className="w-4 h-4" />
           </motion.div>
           
@@ -392,7 +338,7 @@ const MintWidget = () => {
           </h1>
         </motion.div>
 
-        {/* Conexão da Wallet */}
+        {/* Wallet Connection */}
         <div className="bg-white/80 backdrop-blur-sm rounded-3xl p-8 shadow-2xl border border-amber-200 mb-8">
           <div className="flex flex-col items-center gap-4 mb-6">
             <ConnectButton />
@@ -400,73 +346,44 @@ const MintWidget = () => {
             {isConnected && address && (
               <div className="text-center">
                 <p className="text-amber-700">
-                  <strong>Saldo:</strong> {balance ? parseFloat(formatEther(balance.value)).toFixed(4) : '0'} ETH
+                  <strong>Balance:</strong> {balance ? parseFloat(formatEther(balance.value)).toFixed(4) : '0'} ETH
                 </p>
                 <p className="text-sm text-amber-600">
-                  <strong>Rede:</strong> {chain?.id === LINEA_SEPOLIA_CHAIN_ID ? '✅ Linea Sepolia' : '❌ Rede incorreta'}
+                  <strong>Network:</strong> {chain?.id === LINEA_MAINNET_CHAIN_ID ? '✅ Linea Mainnet' : '❌ Wrong network'}
                 </p>
               </div>
             )}
           </div>
 
-          {/* Aviso de rede incorreta */}
-          {isConnected && chain?.id !== LINEA_SEPOLIA_CHAIN_ID && (
+          {/* Wrong network warning */}
+          {isConnected && chain?.id !== LINEA_MAINNET_CHAIN_ID && (
             <div className="bg-yellow-100 border border-yellow-300 rounded-xl p-4 mb-6">
               <p className="text-yellow-800 text-center">
-                <strong>⚠️ Rede incorreta!</strong> Troque para Linea Sepolia no MetaMask
+                <strong>⚠️ Wrong network!</strong> Switch to Linea Mainnet in MetaMask
               </p>
             </div>
           )}
 
-          {/* Status da Venda */}
+          {/* Sale Status */}
           {isConnected && (
             <div className="grid md:grid-cols-2 gap-6 mb-8">
               <div className="bg-amber-50 rounded-xl p-4">
-                <h3 className="text-lg font-bold text-amber-900 mb-3">Status da Venda</h3>
-                <p><strong>Venda Ativa:</strong> {saleActive ? '✅ Sim' : '❌ Não'}</p>
-                <p><strong>Premium Restantes:</strong> {remainingPremium?.toString() || '0'}</p>
-                <p><strong>Starter Restantes:</strong> {remainingStarter?.toString() || '0'}</p>
-                
-                {/* Botão Admin para ativar/desativar venda */}
-                {address?.toLowerCase() === contractOwner?.toLowerCase() && (
-                  <div className="mt-4 pt-3 border-t border-amber-200">
-                    <p className="text-xs text-amber-600 mb-2">🔧 Admin Controls</p>
-                    <Button
-                      onClick={handleToggleSale}
-                      disabled={isPending || isConfirming}
-                      className="w-full h-10 text-sm font-bold bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 disabled:opacity-50"
-                    >
-                      {isPending || isConfirming ? (
-                        'Processando...'
-                      ) : (
-                        saleActive ? 'Desativar Venda' : 'Ativar Venda'
-                      )}
-                    </Button>
-                  </div>
-                )}
+                <h3 className="text-lg font-bold text-amber-900 mb-3">Sale Status</h3>
+                <p><strong>Sale Active:</strong> {saleActive ? '✅ Yes' : '❌ No'}</p>
+                <p><strong>Premium Remaining:</strong> {remainingPremium?.toString() || '0'}</p>
+                <p><strong>Starter Remaining:</strong> {remainingStarter?.toString() || '0'}</p>
               </div>
               
               <div className="bg-amber-50 rounded-xl p-4">
-                <h3 className="text-lg font-bold text-amber-900 mb-3">Seus NFTs</h3>
-                <p><strong>Premium Mintados:</strong> {premiumMinted?.toString() || '0'}/10</p>
-                <p><strong>Starter Mintados:</strong> {starterMinted?.toString() || '0'}/10</p>
-                {contractOwner && (
-                  <div className="mt-3 pt-3 border-t border-amber-200">
-                    <p className="text-xs text-amber-600">
-                      <strong>Owner do Contrato:</strong><br />
-                      {contractOwner.slice(0, 6)}...{contractOwner.slice(-4)}
-                    </p>
-                    {address?.toLowerCase() === contractOwner?.toLowerCase() && (
-                      <p className="text-xs text-purple-600 font-bold mt-1">Você é o owner! 👑</p>
-                    )}
-                  </div>
-                )}
+                <h3 className="text-lg font-bold text-amber-900 mb-3">Your NFTs</h3>
+                <p><strong>Premium Minted:</strong> {premiumMinted?.toString() || '0'}/10</p>
+                <p><strong>Starter Minted:</strong> {starterMinted?.toString() || '0'}/10</p>
               </div>
             </div>
           )}
 
-          {/* Seleção de Bundle */}
-          {isConnected && chain?.id === LINEA_SEPOLIA_CHAIN_ID && (
+          {/* Bundle Selection */}
+          {isConnected && chain?.id === LINEA_MAINNET_CHAIN_ID && (
             <div>
               <div className="grid md:grid-cols-2 gap-4 mb-8">
                 {(Object.entries(bundles) as [keyof typeof bundles, typeof bundles[keyof typeof bundles]][]).map(([key, bundle]) => {
@@ -502,7 +419,7 @@ const MintWidget = () => {
                         <div className="text-3xl font-black text-amber-800 mb-2">{bundle.nfts} NFTs</div>
                         <div className="text-lg font-semibold text-amber-700 mb-2">{bundle.price} ETH</div>
                         <div className="text-sm text-amber-600">
-                          Disponível: {bundle.available} | Seus: {bundle.minted}
+                          Available: {bundle.available} | Yours: {bundle.minted}
                         </div>
                       </div>
                     </motion.div>
@@ -510,7 +427,7 @@ const MintWidget = () => {
                 })}
               </div>
 
-              {/* Controles de Mint */}
+              {/* Mint Controls */}
               <div className="bg-white rounded-2xl p-6 border border-amber-200">
                 <h3 className="text-2xl font-bold text-amber-900 mb-6 text-center">
                   {currentBundle.name}
@@ -519,7 +436,7 @@ const MintWidget = () => {
                 {/* Quantity Selector */}
                 <div className="mb-6">
                   <label className="block text-sm font-medium text-amber-800 mb-4 text-center">
-                    Quantidade (Max {Math.min(currentBundle.maxPerWallet - currentBundle.minted, currentBundle.available)})
+                    Quantity (Max {Math.min(currentBundle.maxPerWallet - currentBundle.minted, currentBundle.available)})
                   </label>
                   <div className="flex items-center justify-center gap-4 mb-4">
                     <Button
@@ -552,7 +469,7 @@ const MintWidget = () => {
                       Total: {calculateTotal()} ETH
                     </p>
                     <p className="text-sm text-amber-600">
-                      Você receberá {currentBundle.nfts * quantity} NFTs
+                      You will receive {currentBundle.nfts * quantity} NFTs
                     </p>
                   </div>
                 </div>
@@ -570,7 +487,7 @@ const MintWidget = () => {
                       transition={{ duration: 1.5, repeat: Infinity }}
                     >
                       <Sparkles className="w-5 h-5 mr-2 animate-spin" />
-                      {isPending ? 'Enviando...' : 'Confirmando...'}
+                      {isPending ? 'Sending...' : 'Confirming...'}
                     </motion.div>
                   ) : (
                     <>
@@ -580,7 +497,7 @@ const MintWidget = () => {
                   )}
                 </Button>
 
-                {/* Mensagens de Status */}
+                {/* Status Messages */}
                 {error && (
                   <div className="mt-4 p-4 bg-red-50 border border-red-200 rounded-xl text-red-700">
                     {error}
@@ -595,9 +512,9 @@ const MintWidget = () => {
 
                 {hash && (
                   <div className="mt-4 p-4 bg-blue-50 border border-blue-200 rounded-xl">
-                    <p className="text-blue-700 mb-2"><strong>Hash da Transação:</strong></p>
+                    <p className="text-blue-700 mb-2"><strong>Transaction Hash:</strong></p>
                     <a 
-                      href={`https://sepolia.lineascan.build/tx/${hash}`}
+                      href={`https://lineascan.build/tx/${hash}`}
                       target="_blank"
                       rel="noopener noreferrer"
                       className="text-blue-600 hover:text-blue-800 underline break-all text-sm"
@@ -609,7 +526,7 @@ const MintWidget = () => {
 
                 {/* Bundle Rewards */}
                 <div className="mt-8 pt-6 border-t border-amber-200">
-                  <h4 className="text-lg font-bold text-amber-900 mb-4 text-center">Recompensas Exclusivas</h4>
+                  <h4 className="text-lg font-bold text-amber-900 mb-4 text-center">Exclusive Rewards</h4>
                   <div className="space-y-2">
                     {currentBundle.rewards.map((reward, index) => (
                       <motion.div
