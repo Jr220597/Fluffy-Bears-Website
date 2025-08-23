@@ -8,64 +8,64 @@ export function RoadmapSection() {
   const roadmapPhases = [
     {
       phase: "Q3 2025",
-      title: "Fundação",
+      title: "Foundation",
       status: "in-progress",
       items: [
-        "Desenvolvimento da arte e conceito",
-        "Criação dos smart contracts",
-        "Auditoria de segurança", 
-        "Lançamento do website e redes sociais",
-        "Abertura da whitelist",
-        "Abertura da comunidade Discord",
-        "Mint público dos NFTs",
-        "Listagem no mercado secundário"
+        "Art and concept development",
+        "Smart contract creation",
+        "Security audit", 
+        "Website and social media launch",
+        "Whitelist opening",
+        "Discord community opening",
+        "Public NFT mint",
+        "Secondary market listing"
       ]
     },
     {
       phase: "Q4 2025", 
-      title: "Lançamento",
+      title: "Launch",
       status: "planned",
       items: [
-        "Lançamento do sistema de staking",
-        "Primeiros investimentos em pools DeFi",
-        "Planejamento dos produtos 3D",
-        "Design e prototipagem das pelúcias",
-        "Criação do roteiro do canal infantil",
-        "Desenvolvimento do conteúdo educativo",
-        "Início da produção própria",
-        "Primeira distribuição de lucros"
+        "Staking system launch",
+        "First DeFi pool investments",
+        "3D product planning",
+        "Plushie design and prototyping",
+        "Kids channel script creation",
+        "Educational content development",
+        "Own production start",
+        "First profit distribution"
       ]
     },
     {
       phase: "Q1 2026",
-      title: "Expansão",
+      title: "Expansion",
       status: "planned", 
       items: [
-        "Produção das primeiras pelúcias",
-        "Lançamento da loja online",
-        "Início do canal YouTube educativo",
-        "Parcerias com lojas físicas",
-        "Parcerias com outros projetos NFT",
-        "Desenvolvimento de produtos para terceiros",
-        "Venda de produtos de outros projetos na loja"
+        "First plushie production",
+        "Online store launch",
+        "Educational YouTube channel start",
+        "Physical store partnerships",
+        "NFT project partnerships",
+        "Third-party product development",
+        "Other project product sales in store"
       ]
     },
     {
       phase: "2026+",
-      title: "Crescimento e Consolidação",
+      title: "Growth and Consolidation",
       status: "planned",
       items: [
-        "Expansão internacional das vendas",
-        "Novos produtos da linha Fluffy Bears",
-        "Programa de afiliados para holders",
-        "Integração com metaversos",
-        "Lançamento de token utilitário",
-        "Programa de governança DAO",
-        "Expansão para outros blockchains",
-        "Fluffy Bears como marca global",
-        "Parque temático virtual",
-        "Linha de produtos infantis completa",
-        "Academia de educação financeira"
+        "International sales expansion",
+        "New Fluffy Bears product line",
+        "Holder affiliate program",
+        "Metaverse integrations",
+        "Utility token launch",
+        "DAO governance program",
+        "Other blockchain expansion",
+        "Global Fluffy Bears brand",
+        "Virtual theme park",
+        "Complete children's product line",
+        "Financial education academy"
       ]
     }
   ]
@@ -92,11 +92,11 @@ export function RoadmapSection() {
 
   const getStatusLabel = (status: string) => {
     switch (status) {
-      case 'completed': return '80% Concluído'
-      case 'in-progress': return 'Em Andamento'
-      case 'planned': return 'Planejado'
-      case 'vision': return 'Visão'
-      default: return 'Pendente'
+      case 'completed': return '80% Complete'
+      case 'in-progress': return 'In Progress'
+      case 'planned': return 'Planned'
+      case 'vision': return 'Vision'
+      default: return 'Pending'
     }
   }
 
@@ -108,7 +108,7 @@ export function RoadmapSection() {
         </div>
         <div>
           <h2 className="text-3xl font-bold">Roadmap</h2>
-          <p className="text-muted-foreground">Nossa jornada de crescimento e expansão</p>
+          <p className="text-muted-foreground">Our journey of growth and expansion</p>
         </div>
       </div>
 
@@ -116,25 +116,25 @@ export function RoadmapSection() {
         {/* Progress Overview */}
         <Card className="border-l-4 border-l-blue-500">
           <CardHeader>
-            <CardTitle>Progresso Atual</CardTitle>
+            <CardTitle>Current Progress</CardTitle>
           </CardHeader>
           <CardContent>
             <div className="grid gap-4 md:grid-cols-4">
               <div className="text-center p-4 rounded-lg bg-blue-100 dark:bg-blue-900/20">
                 <div className="text-2xl font-bold text-blue-600">Q3 2025</div>
-                <div className="text-sm text-blue-600">80% Concluído</div>
+                <div className="text-sm text-blue-600">80% Complete</div>
               </div>
               <div className="text-center p-4 rounded-lg bg-muted">
                 <div className="text-2xl font-bold text-muted-foreground">Q4 2025</div>
-                <div className="text-sm text-muted-foreground">Planejado</div>
+                <div className="text-sm text-muted-foreground">Planned</div>
               </div>
               <div className="text-center p-4 rounded-lg bg-muted">
                 <div className="text-2xl font-bold text-muted-foreground">Q1 2026</div>
-                <div className="text-sm text-muted-foreground">Próximo</div>
+                <div className="text-sm text-muted-foreground">Next</div>
               </div>
               <div className="text-center p-4 rounded-lg bg-muted">
                 <div className="text-2xl font-bold text-muted-foreground">2026+</div>
-                <div className="text-sm text-muted-foreground">Futuro</div>
+                <div className="text-sm text-muted-foreground">Future</div>
               </div>
             </div>
           </CardContent>
@@ -209,53 +209,53 @@ export function RoadmapSection() {
         {/* Key Milestones */}
         <Card className="bg-gradient-to-r from-primary/10 to-secondary/10 border-primary/20">
           <CardHeader>
-            <CardTitle>Marcos Importantes</CardTitle>
+            <CardTitle>Key Milestones</CardTitle>
           </CardHeader>
           <CardContent className="space-y-4">
             <div className="grid gap-4 md:grid-cols-2">
               <div className="space-y-3">
-                <h5 className="font-semibold text-primary">Curto Prazo (2025-2026)</h5>
+                <h5 className="font-semibold text-primary">Short Term (2025-2026)</h5>
                 <ul className="space-y-2 text-sm">
                   <li className="flex items-center gap-2">
                     <CheckCircle className="w-4 h-4 text-green-500" />
-                    <span>100% dos NFTs mintados</span>
+                    <span>100% of NFTs minted</span>
                   </li>
                   <li className="flex items-center gap-2">
                     <Clock className="w-4 h-4 text-blue-500" />
-                    <span>Sistema de staking ativo</span>
+                    <span>Active staking system</span>
                   </li>
                   <li className="flex items-center gap-2">
                     <Calendar className="w-4 h-4 text-yellow-500" />
-                    <span>Primeiros produtos físicos</span>
+                    <span>First physical products</span>
                   </li>
                   <li className="flex items-center gap-2">
                     <Calendar className="w-4 h-4 text-yellow-500" />
-                    <span>Canal educativo lançado</span>
+                    <span>Educational channel launched</span>
                   </li>
                 </ul>
               </div>
               
               <div className="space-y-3">
-                <h5 className="font-semibold text-primary">Longo Prazo (2026+)</h5>
+                <h5 className="font-semibold text-primary">Long Term (2026+)</h5>
                 <ul className="space-y-2 text-sm">
                   <li className="flex items-center gap-2">
                     <Target className="w-4 h-4 text-purple-500" />
-                    <span>Marca global estabelecida</span>
+                    <span>Established global brand</span>
                   </li>
                   <li className="flex items-center gap-2">
                     <Target className="w-4 h-4 text-purple-500" />
-                    <span>Token utilitário lançado</span>
+                    <span>Utility token launched</span>
                   </li>
                 </ul>
               </div>
             </div>
 
             <div className="mt-6 p-4 rounded-lg bg-muted border">
-              <h5 className="font-semibold mb-2">Transparência e Prestação de Contas</h5>
+              <h5 className="font-semibold mb-2">Transparency and Accountability</h5>
               <p className="text-sm text-muted-foreground">
-                Nosso roadmap é revisado mensalmente e ajustado conforme necessário. 
-                Todos os holders recebem relatórios detalhados do progresso e podem 
-                participar das decisões através da governança da comunidade.
+                Our roadmap is reviewed monthly and adjusted as needed. 
+                All holders receive detailed progress reports and can 
+                participate in decisions through community governance.
               </p>
             </div>
           </CardContent>

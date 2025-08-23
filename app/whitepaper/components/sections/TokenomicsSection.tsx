@@ -7,55 +7,55 @@ import { Coins, PieChart, TrendingUp, Shield, Wallet } from 'lucide-react'
 export function TokenomicsSection() {
   const distribution = [
     {
-      category: "Pools de Liquidez",
+      category: "Liquidity Pools",
       percentage: "75%",
       color: "bg-blue-500",
-      description: "Investimento principal em pools DeFi para geração de rendimento"
+      description: "Primary investment in DeFi pools for yield generation"
     },
     {
-      category: "Produção Física",
+      category: "Physical Production",
       percentage: "10%",
       color: "bg-green-500",
-      description: "Fabricação e distribuição de produtos físicos globalmente"
+      description: "Manufacturing and global distribution of physical products"
     },
     {
-      category: "Marketing & Expansão",
+      category: "Marketing & Expansion",
       percentage: "10%",
       color: "bg-purple-500", 
-      description: "Crescimento da marca e aquisição de novos holders"
+      description: "Brand growth and new holder acquisition"
     },
     {
-      category: "Desenvolvimento",
+      category: "Development",
       percentage: "5%",
       color: "bg-orange-500",
-      description: "Melhoria contínua da plataforma e novos produtos"
+      description: "Continuous platform improvement and new products"
     }
   ]
 
   const revenueStreams = [
     {
-      name: "Rendimento das Pools",
+      name: "Pool Yields",
       estimated: "70-250% APY",
-      status: "Ativo",
-      description: "Lucros automáticos dos investimentos DeFi"
+      status: "Active",
+      description: "Automatic profits from DeFi investments"
     },
     {
-      name: "Venda de Produtos", 
-      estimated: "20-30% margem",
-      status: "Planejado",
-      description: "Produtos físicos com demanda comprovada"
+      name: "Product Sales", 
+      estimated: "20-30% margin",
+      status: "Planned",
+      description: "Physical products with proven demand"
     },
     {
-      name: "Canal YouTube",
-      estimated: "$500-2000/mês",
-      status: "Desenvolvimento", 
-      description: "Receita publicitária do conteúdo infantil"
+      name: "YouTube Channel",
+      estimated: "$500-2000/month",
+      status: "Development", 
+      description: "Advertising revenue from children's content"
     },
     {
-      name: "Royalties NFT",
-      estimated: "5% por venda",
-      status: "Ativo",
-      description: "Comissão das vendas no mercado secundário"
+      name: "NFT Royalties",
+      estimated: "5% per sale",
+      status: "Active",
+      description: "Commission from secondary market sales"
     }
   ]
 
@@ -67,7 +67,7 @@ export function TokenomicsSection() {
         </div>
         <div>
           <h2 className="text-3xl font-bold">Fluffynomics</h2>
-          <p className="text-muted-foreground">Distribuição e economia do projeto</p>
+          <p className="text-muted-foreground">Project distribution and economics</p>
         </div>
       </div>
 
@@ -77,18 +77,18 @@ export function TokenomicsSection() {
           <CardHeader>
             <CardTitle className="flex items-center gap-2">
               <Wallet className="h-5 w-5 text-green-500" />
-              Informações de Mint
+              Mint Information
             </CardTitle>
           </CardHeader>
           <CardContent>
             <div className="grid gap-4 md:grid-cols-3">
               <div className="text-center p-4 rounded-lg bg-muted">
                 <div className="text-2xl font-bold text-primary">0.025 ETH</div>
-                <div className="text-sm text-muted-foreground">Preço de Mint</div>
+                <div className="text-sm text-muted-foreground">Mint Price</div>
               </div>
               <div className="text-center p-4 rounded-lg bg-muted">
                 <div className="text-2xl font-bold text-primary">Limited</div>
-                <div className="text-sm text-muted-foreground">Supply Total</div>
+                <div className="text-sm text-muted-foreground">Total Supply</div>
               </div>
               <div className="text-center p-4 rounded-lg bg-muted">
                 <div className="text-2xl font-bold text-primary">5%</div>
@@ -103,12 +103,12 @@ export function TokenomicsSection() {
           <CardHeader>
             <CardTitle className="flex items-center gap-2">
               <PieChart className="h-5 w-5 text-blue-500" />
-              Distribuição dos Fundos
+              Fund Distribution
             </CardTitle>
           </CardHeader>
           <CardContent className="space-y-4">
             <p className="text-muted-foreground">
-              Cada ETH arrecadado será estrategicamente alocado para maximizar o retorno dos holders:
+              Each ETH raised will be strategically allocated to maximize holder returns:
             </p>
             
             <div className="space-y-3">
@@ -127,10 +127,10 @@ export function TokenomicsSection() {
             </div>
 
             <div className="mt-6 p-4 rounded-lg bg-primary/10 border border-primary/20">
-              <h4 className="font-semibold mb-2 text-primary">Transparência Total</h4>
+              <h4 className="font-semibold mb-2 text-primary">Total Transparency</h4>
               <p className="text-sm">
-                Todas as transações serão públicas e rastreáveis no blockchain. 
-                Relatórios mensais detalharão o uso dos fundos e os resultados obtidos.
+                All transactions will be public and traceable on the blockchain. 
+                Monthly reports will detail fund usage and results achieved.
               </p>
             </div>
           </CardContent>
@@ -141,12 +141,12 @@ export function TokenomicsSection() {
           <CardHeader>
             <CardTitle className="flex items-center gap-2">
               <TrendingUp className="h-5 w-5 text-green-500" />
-              Fluxos de Receita
+              Revenue Streams
             </CardTitle>
           </CardHeader>
           <CardContent className="space-y-4">
             <p className="text-muted-foreground">
-              Múltiplas fontes de receita garantem sustentabilidade e crescimento contínuo:
+              Multiple revenue sources ensure sustainability and continuous growth:
             </p>
             
             <div className="grid gap-4 md:grid-cols-2">
@@ -156,7 +156,7 @@ export function TokenomicsSection() {
                     <div className="flex items-start justify-between mb-2">
                       <h4 className="font-semibold">{stream.name}</h4>
                       <Badge 
-                        variant={stream.status === 'Ativo' ? 'default' : stream.status === 'Planejado' ? 'secondary' : 'outline'}
+                        variant={stream.status === 'Active' ? 'default' : stream.status === 'Planned' ? 'secondary' : 'outline'}
                         className="text-xs"
                       >
                         {stream.status}
@@ -164,7 +164,7 @@ export function TokenomicsSection() {
                     </div>
                     <p className="text-sm text-muted-foreground mb-2">{stream.description}</p>
                     <div className="text-sm font-medium text-green-600">
-                      Estimativa: {stream.estimated}
+                      Estimate: {stream.estimated}
                     </div>
                   </CardContent>
                 </Card>
@@ -178,66 +178,66 @@ export function TokenomicsSection() {
           <CardHeader>
             <CardTitle className="flex items-center gap-2">
               <Shield className="h-5 w-5 text-primary" />
-              Proposta de Valor para Holders
+              Value Proposition for Holders
             </CardTitle>
           </CardHeader>
           <CardContent className="space-y-4">
             <p className="text-lg">
-              Diferentemente de projetos especulativos, os Fluffy Bears oferecem valor real e sustentável:
+              Unlike speculative projects, Fluffy Bears offers real and sustainable value:
             </p>
             
             <div className="grid gap-4 md:grid-cols-2">
               <div className="space-y-3">
-                <h5 className="font-semibold text-primary">Benefícios Imediatos</h5>
+                <h5 className="font-semibold text-primary">Immediate Benefits</h5>
                 <ul className="space-y-2 text-sm">
                   <li className="flex items-center gap-2">
                     <div className="w-2 h-2 rounded-full bg-green-500" />
-                    NFT único e colecionável
+                    Unique and collectible NFT
                   </li>
                   <li className="flex items-center gap-2">
                     <div className="w-2 h-2 rounded-full bg-green-500" />
-                    Acesso ao sistema de staking
+                    Access to staking system
                   </li>
                   <li className="flex items-center gap-2">
                     <div className="w-2 h-2 rounded-full bg-green-500" />
-                    Comunidade exclusiva
+                    Exclusive community
                   </li>
                   <li className="flex items-center gap-2">
                     <div className="w-2 h-2 rounded-full bg-green-500" />
-                    Desconto em produtos físicos
+                    Discount on physical products
                   </li>
                 </ul>
               </div>
               
               <div className="space-y-3">
-                <h5 className="font-semibold text-primary">Benefícios de Longo Prazo</h5>
+                <h5 className="font-semibold text-primary">Long-term Benefits</h5>
                 <ul className="space-y-2 text-sm">
                   <li className="flex items-center gap-2">
                     <div className="w-2 h-2 rounded-full bg-blue-500" />
-                    Distribuição de lucros das vendas
+                    Distribution of sales profits
                   </li>
                   <li className="flex items-center gap-2">
                     <div className="w-2 h-2 rounded-full bg-blue-500" />
-                    Crescimento do valor intrínseco
+                    Intrinsic value growth
                   </li>
                   <li className="flex items-center gap-2">
                     <div className="w-2 h-2 rounded-full bg-blue-500" />
-                    Participação em futuras expansões
+                    Participation in future expansions
                   </li>
                   <li className="flex items-center gap-2">
                     <div className="w-2 h-2 rounded-full bg-blue-500" />
-                    Produtos físicos exclusivos
+                    Exclusive physical products
                   </li>
                 </ul>
               </div>
             </div>
 
             <div className="mt-6 p-4 rounded-lg bg-muted border">
-              <h5 className="font-semibold mb-2">Projeção Conservadora</h5>
+              <h5 className="font-semibold mb-2">Conservative Projection</h5>
               <p className="text-sm text-muted-foreground">
-                Com base em nossos modelos financeiros, esperamos que cada holder receba 
-                entre 100-250% do valor investido anualmente através de staking rewards, 
-                além da apreciação natural do NFT devido às utilidades reais.
+                Based on our financial models, we expect each holder to receive 
+                between 100-250% of invested value annually through staking rewards, 
+                in addition to natural NFT appreciation due to real utilities.
               </p>
             </div>
           </CardContent>

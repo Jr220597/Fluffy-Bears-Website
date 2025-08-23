@@ -30,27 +30,27 @@ interface DiagramProps {
 }
 
 export function EconomicCycleDiagramNew({ className = "", data }: DiagramProps) {
-  // Dados padrão
+  // Default data
   const defaultData = {
     mint: {
-      description: "Venda Inicial de NFTs na blockchain Linea.",
-      kpis: { "Supply": "Coming Soon", "Preço": "0.025 ETH", "Blockchain": "Linea" }
+      description: "Initial sale of NFTs on Linea blockchain.",
+      kpis: { "Supply": "Coming Soon", "Price": "0.025 ETH", "Blockchain": "Linea" }
     },
     products: {
-      description: "Produção e venda de pelúcias 3D dos Fluffy Bears.",
-      kpis: { "Margem": "30-50%", "Reinvestimento": "75%", "Lançamento": "Q4 2025" }
+      description: "Production and sale of Fluffy Bears 3D plushies.",
+      kpis: { "Margin": "30-50%", "Reinvestment": "75%", "Launch": "Q4 2025" }
     },
     channel: {
-      description: "Canal YouTube com conteúdo infantil educativo.",
-      kpis: { "Meta": "$1-3K/mês", "Reinvestimento": "75%", "Frequência": "4 vídeos/sem" }
+      description: "YouTube channel with educational children's content.",
+      kpis: { "Goal": "$1-3K/month", "Reinvestment": "75%", "Frequency": "4 videos/week" }
     },
     pools: {
-      description: "Pools de liquidez na DEX Etherex (Linea) para gerar yield.",
+      description: "Liquidity pools on Etherex DEX (Linea) to generate yield.",
       kpis: { "APY": "70-250%", "DEX": "Etherex", "Blockchain": "Linea" }
     },
     stakers: {
-      description: "Holders que fazem staking dos NFTs e recebem recompensas em ETH.",
-      kpis: { "Distribuição": "Periódica", "Stake mínimo": "7 dias", "Token": "ETH" }
+      description: "Holders who stake NFTs and receive rewards in ETH.",
+      kpis: { "Distribution": "Periodic", "Min Stake": "7 days", "Token": "ETH" }
     }
   }
 
@@ -62,7 +62,7 @@ export function EconomicCycleDiagramNew({ className = "", data }: DiagramProps) 
         <CardHeader>
           <CardTitle className="flex items-center gap-2">
             <Zap className="h-5 w-5 text-primary" />
-            Diagrama do Ciclo Econômico
+            Economic Cycle Diagram
           </CardTitle>
         </CardHeader>
 
@@ -73,7 +73,7 @@ export function EconomicCycleDiagramNew({ className = "", data }: DiagramProps) 
               className="w-full h-auto max-w-7xl mx-auto"
               style={{ minHeight: '300px' }}
             >
-              {/* Definições */}
+              {/* Definitions */}
               <defs>
                 <marker
                   id="arrowHead"
@@ -91,7 +91,7 @@ export function EconomicCycleDiagramNew({ className = "", data }: DiagramProps) 
               {/* Background */}
               <rect width="1200" height="400" fill="hsl(var(--card))" rx="8" />
 
-              {/* NÓDULOS HORIZONTAIS */}
+              {/* HORIZONTAL NODES */}
               
               {/* 1. Mint */}
               <Tooltip>
@@ -110,7 +110,7 @@ export function EconomicCycleDiagramNew({ className = "", data }: DiagramProps) 
                 </TooltipTrigger>
                 <TooltipContent>
                   <div className="space-y-2">
-                    <p className="font-medium">Mint NFT</p>
+                    <p className="font-medium">NFT Mint</p>
                     <p className="text-sm text-muted-foreground">{finalData.mint.description}</p>
                     <div className="space-y-1">
                       {Object.entries(finalData.mint.kpis).map(([key, value]) => (
@@ -124,7 +124,7 @@ export function EconomicCycleDiagramNew({ className = "", data }: DiagramProps) 
                 </TooltipContent>
               </Tooltip>
 
-              {/* 2. Produtos 3D */}
+              {/* 2. 3D Products */}
               <Tooltip>
                 <TooltipTrigger asChild>
                   <g className="cursor-pointer hover:scale-110 transition-transform duration-200 ease-out" style={{ transformOrigin: '100px 240px' }}>
@@ -135,13 +135,13 @@ export function EconomicCycleDiagramNew({ className = "", data }: DiagramProps) 
                       <Package className="w-6 h-6 text-white" />
                     </foreignObject>
                     <text x="100" y="305" textAnchor="middle" className="fill-foreground text-sm font-semibold">
-                      Produtos 3D
+                      3D Products
                     </text>
                   </g>
                 </TooltipTrigger>
                 <TooltipContent>
                   <div className="space-y-2">
-                    <p className="font-medium">Produtos 3D</p>
+                    <p className="font-medium">3D Products</p>
                     <p className="text-sm text-muted-foreground">{finalData.products.description}</p>
                     <div className="space-y-1">
                       {Object.entries(finalData.products.kpis).map(([key, value]) => (
@@ -155,7 +155,7 @@ export function EconomicCycleDiagramNew({ className = "", data }: DiagramProps) 
                 </TooltipContent>
               </Tooltip>
 
-              {/* 3. Canal Infantil */}
+              {/* 3. Kids Channel */}
               <Tooltip>
                 <TooltipTrigger asChild>
                   <g className="cursor-pointer hover:scale-110 transition-transform duration-200 ease-out" style={{ transformOrigin: '100px 360px' }}>
@@ -166,13 +166,13 @@ export function EconomicCycleDiagramNew({ className = "", data }: DiagramProps) 
                       <Video className="w-6 h-6 text-white" />
                     </foreignObject>
                     <text x="100" y="425" textAnchor="middle" className="fill-foreground text-sm font-semibold">
-                      Canal Infantil
+                      Kids Channel
                     </text>
                   </g>
                 </TooltipTrigger>
                 <TooltipContent>
                   <div className="space-y-2">
-                    <p className="font-medium">Canal Infantil</p>
+                    <p className="font-medium">Kids Channel</p>
                     <p className="text-sm text-muted-foreground">{finalData.channel.description}</p>
                     <div className="space-y-1">
                       {Object.entries(finalData.channel.kpis).map(([key, value]) => (
@@ -186,7 +186,7 @@ export function EconomicCycleDiagramNew({ className = "", data }: DiagramProps) 
                 </TooltipContent>
               </Tooltip>
 
-              {/* 4. Pools (centro) */}
+              {/* 4. Pools (center) */}
               <Tooltip>
                 <TooltipTrigger asChild>
                   <g className="cursor-pointer hover:scale-110 transition-transform duration-200 ease-out" style={{ transformOrigin: '600px 200px' }}>
@@ -203,7 +203,7 @@ export function EconomicCycleDiagramNew({ className = "", data }: DiagramProps) 
                 </TooltipTrigger>
                 <TooltipContent>
                   <div className="space-y-2">
-                    <p className="font-medium">Pools DeFi</p>
+                    <p className="font-medium">DeFi Pools</p>
                     <p className="text-sm text-muted-foreground">{finalData.pools.description}</p>
                     <div className="space-y-1">
                       {Object.entries(finalData.pools.kpis).map(([key, value]) => (
@@ -217,7 +217,7 @@ export function EconomicCycleDiagramNew({ className = "", data }: DiagramProps) 
                 </TooltipContent>
               </Tooltip>
 
-              {/* 5. Stakers (direita) */}
+              {/* 5. Stakers (right) */}
               <Tooltip>
                 <TooltipTrigger asChild>
                   <g className="cursor-pointer hover:scale-110 transition-transform duration-200 ease-out" style={{ transformOrigin: '1100px 200px' }}>
@@ -248,7 +248,7 @@ export function EconomicCycleDiagramNew({ className = "", data }: DiagramProps) 
                 </TooltipContent>
               </Tooltip>
 
-              {/* LINHAS HORIZONTAIS */}
+              {/* HORIZONTAL LINES */}
               
               {/* 1. Mint → Pools */}
               <line
@@ -261,7 +261,7 @@ export function EconomicCycleDiagramNew({ className = "", data }: DiagramProps) 
                 markerEnd="url(#arrowHead)"
               />
 
-              {/* 2. Produtos 3D → Pools */}
+              {/* 2. 3D Products → Pools */}
               <line
                 x1="135"
                 y1="240"
@@ -272,7 +272,7 @@ export function EconomicCycleDiagramNew({ className = "", data }: DiagramProps) 
                 markerEnd="url(#arrowHead)"
               />
 
-              {/* 3. Canal Infantil → Pools */}
+              {/* 3. Kids Channel → Pools */}
               <line
                 x1="135"
                 y1="360"
@@ -297,31 +297,31 @@ export function EconomicCycleDiagramNew({ className = "", data }: DiagramProps) 
             </svg>
           </div>
 
-          {/* Legenda */}
+          {/* Legend */}
           <div className="mt-8 grid gap-4 md:grid-cols-3">
             <div className="p-4 rounded-lg bg-muted/30 border">
               <h4 className="text-sm font-semibold mb-3 flex items-center gap-2">
                 <ArrowRight className="w-4 h-4 text-primary" />
-                Fontes de Entrada
+                Input Sources
               </h4>
               <div className="space-y-2 text-sm">
                 <div className="flex items-center gap-3">
                   <div className="w-6 h-6 rounded-full flex items-center justify-center" style={{ backgroundColor: "#5B8DEF" }}>
                     <Coins className="w-3 h-3 text-white" />
                   </div>
-                  <span className="text-muted-foreground">Mint NFT</span>
+                  <span className="text-muted-foreground">NFT Mint</span>
                 </div>
                 <div className="flex items-center gap-3">
                   <div className="w-6 h-6 rounded-full flex items-center justify-center" style={{ backgroundColor: "#22C55E" }}>
                     <Package className="w-3 h-3 text-white" />
                   </div>
-                  <span className="text-muted-foreground">Produtos 3D</span>
+                  <span className="text-muted-foreground">3D Products</span>
                 </div>
                 <div className="flex items-center gap-3">
                   <div className="w-6 h-6 rounded-full flex items-center justify-center" style={{ backgroundColor: "#EAB308" }}>
                     <Video className="w-3 h-3 text-white" />
                   </div>
-                  <span className="text-muted-foreground">Canal Infantil</span>
+                  <span className="text-muted-foreground">Kids Channel</span>
                 </div>
               </div>
             </div>
@@ -329,17 +329,17 @@ export function EconomicCycleDiagramNew({ className = "", data }: DiagramProps) 
             <div className="p-4 rounded-lg bg-muted/30 border">
               <h4 className="text-sm font-semibold mb-3 flex items-center gap-2">
                 <Layers className="w-4 h-4 text-primary" />
-                Centro do Sistema
+                System Center
               </h4>
               <div className="space-y-2 text-sm">
                 <div className="flex items-center gap-3">
                   <div className="w-6 h-6 rounded-full flex items-center justify-center" style={{ backgroundColor: "#7C3AED" }}>
                     <Layers className="w-3 h-3 text-white" />
                   </div>
-                  <span className="text-muted-foreground">Pools DeFi</span>
+                  <span className="text-muted-foreground">DeFi Pools</span>
                 </div>
                 <p className="text-xs text-muted-foreground mt-2">
-                  Recebe todas as entradas e gera yield contínuo
+                  Receives all inputs and generates continuous yield
                 </p>
               </div>
             </div>
@@ -347,7 +347,7 @@ export function EconomicCycleDiagramNew({ className = "", data }: DiagramProps) 
             <div className="p-4 rounded-lg bg-muted/30 border">
               <h4 className="text-sm font-semibold mb-3 flex items-center gap-2">
                 <Users className="w-4 h-4 text-primary" />
-                Beneficiários
+                Beneficiaries
               </h4>
               <div className="space-y-2 text-sm">
                 <div className="flex items-center gap-3">
@@ -357,7 +357,7 @@ export function EconomicCycleDiagramNew({ className = "", data }: DiagramProps) 
                   <span className="text-muted-foreground">NFT Stakers</span>
                 </div>
                 <p className="text-xs text-muted-foreground mt-2">
-                  Recebem recompensas periódicas em ETH
+                  Receive periodic rewards in ETH
                 </p>
               </div>
             </div>

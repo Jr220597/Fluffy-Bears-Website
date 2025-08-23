@@ -13,8 +13,8 @@ export function LiquidityPoolsSection() {
           <Droplets className="h-6 w-6" />
         </div>
         <div>
-          <h2 className="text-3xl font-bold">Pools de Liquidez</h2>
-          <p className="text-muted-foreground">Investimentos seguros e rentáveis</p>
+          <h2 className="text-3xl font-bold">Liquidity Pools</h2>
+          <p className="text-muted-foreground">Safe and profitable investments</p>
         </div>
       </div>
 
@@ -23,29 +23,29 @@ export function LiquidityPoolsSection() {
           <CardHeader>
             <CardTitle className="flex items-center gap-2">
               <Shield className="h-5 w-5 text-blue-500" />
-              Estratégia de Investimento
+              Investment Strategy
             </CardTitle>
           </CardHeader>
           <CardContent className="space-y-4">
             <p className="text-lg leading-relaxed">
-              75% dos fundos arrecadados são investidos em pools de liquidez DeFi cuidadosamente 
-              selecionadas, priorizando segurança e rentabilidade consistente. Nossa estratégia 
-              conservadora garante retornos estáveis para os holders. Todos os pools inicialmente 
-              estarão alocados estrategicamente na Etherex.
+              75% of raised funds are invested in carefully selected DeFi liquidity pools, 
+              prioritizing security and consistent profitability. Our conservative strategy 
+              ensures stable returns for holders. All pools will initially be strategically 
+              allocated on Etherex.
             </p>
             
             <div className="grid gap-4 md:grid-cols-3">
               <div className="text-center p-4 rounded-lg bg-muted">
                 <div className="text-2xl font-bold text-primary">75%</div>
-                <div className="text-sm text-muted-foreground">Investimento Inicial</div>
+                <div className="text-sm text-muted-foreground">Initial Investment</div>
               </div>
               <div className="text-center p-4 rounded-lg bg-muted">
                 <div className="text-2xl font-bold text-primary">70-250%</div>
-                <div className="text-sm text-muted-foreground">APY Esperado</div>
+                <div className="text-sm text-muted-foreground">Expected APY</div>
               </div>
               <div className="text-center p-4 rounded-lg bg-muted">
                 <div className="text-2xl font-bold text-primary">100%</div>
-                <div className="text-sm text-muted-foreground">Auditadas</div>
+                <div className="text-sm text-muted-foreground">Audited</div>
               </div>
             </div>
           </CardContent>
@@ -56,43 +56,43 @@ export function LiquidityPoolsSection() {
           <CardHeader>
             <CardTitle className="flex items-center gap-2">
               <TrendingUp className="h-5 w-5 text-green-500" />
-              Benefícios das Pools
+              Pool Benefits
             </CardTitle>
           </CardHeader>
           <CardContent className="space-y-4">
             <div className="grid gap-4 md:grid-cols-2">
               <div className="space-y-3">
-                <h5 className="font-semibold">Rendimento Passivo</h5>
+                <h5 className="font-semibold">Passive Income</h5>
                 <ul className="space-y-2 text-sm">
                   <li className="flex items-center gap-2">
                     <Zap className="w-4 h-4 text-yellow-500" />
-                    Lucros automáticos 24/7
+                    Automatic profits 24/7
                   </li>
                   <li className="flex items-center gap-2">
                     <Zap className="w-4 h-4 text-yellow-500" />
-                    Compound interest constante
+                    Constant compound interest
                   </li>
                   <li className="flex items-center gap-2">
                     <Zap className="w-4 h-4 text-yellow-500" />
-                    Sem necessidade de gestão ativa
+                    No need for active management
                   </li>
                 </ul>
               </div>
               
               <div className="space-y-3">
-                <h5 className="font-semibold">Segurança</h5>
+                <h5 className="font-semibold">Security</h5>
                 <ul className="space-y-2 text-sm">
                   <li className="flex items-center gap-2">
                     <Shield className="w-4 h-4 text-blue-500" />
-                    Protocolos auditados e testados
+                    Audited and tested protocols
                   </li>
                   <li className="flex items-center gap-2">
                     <Shield className="w-4 h-4 text-blue-500" />
-                    Diversificação de riscos
+                    Risk diversification
                   </li>
                   <li className="flex items-center gap-2">
                     <Shield className="w-4 h-4 text-blue-500" />
-                    Monitoramento constante
+                    Constant monitoring
                   </li>
                 </ul>
               </div>

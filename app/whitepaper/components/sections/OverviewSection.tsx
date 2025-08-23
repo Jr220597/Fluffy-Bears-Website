@@ -8,26 +8,26 @@ export function OverviewSection() {
   const features = [
     {
       icon: Zap,
-      title: "Staking com Rewards",
-      description: "Sistema de staking que distribui lucros reais dos produtos físicos",
+      title: "Staking with Rewards",
+      description: "Staking system that distributes real profits from physical products",
       color: "text-yellow-500"
     },
     {
       icon: Shield,
-      title: "Pools de Liquidez",
-      description: "Investimentos seguros com reforço constante dos lucros",
+      title: "Liquidity Pools",
+      description: "Safe investments with constant profit reinforcement",
       color: "text-blue-500"
     },
     {
       icon: Globe,
-      title: "Produtos Físicos",
-      description: "Produtos de alta qualidade vendidos globalmente",
+      title: "Physical Products",
+      description: "High-quality products sold globally",
       color: "text-green-500"
     },
     {
       icon: Coins,
-      title: "Canal Infantil",
-      description: "Conteúdo infantil que gera receita publicitária",
+      title: "Kids Channel",
+      description: "Children's content that generates advertising revenue",
       color: "text-purple-500"
     }
   ]
@@ -39,52 +39,52 @@ export function OverviewSection() {
           <Eye className="h-6 w-6" />
         </div>
         <div>
-          <h2 className="text-3xl font-bold">Visão Geral</h2>
-          <p className="text-muted-foreground">Como funciona o ecossistema Fluffy Bears</p>
+          <h2 className="text-3xl font-bold">Overview</h2>
+          <p className="text-muted-foreground">How the Fluffy Bears ecosystem works</p>
         </div>
       </div>
 
       <div className="grid gap-6">
         <Card className="border-l-4 border-l-blue-500">
           <CardHeader>
-            <CardTitle>O Ecossistema Completo</CardTitle>
+            <CardTitle>The Complete Ecosystem</CardTitle>
           </CardHeader>
           <CardContent className="space-y-4">
             <p className="text-lg leading-relaxed">
-              O projeto Fluffy Bears opera como um <strong>ecossistema integrado</strong> onde cada componente 
-              alimenta e fortalece os demais. Nossa abordagem única combina NFTs, DeFi, produtos físicos 
-              e conteúdo digital em um ciclo econômico sustentável.
+              The Fluffy Bears project operates as an <strong>integrated ecosystem</strong> where each component 
+              feeds and strengthens the others. Our unique approach combines NFTs, DeFi, physical products 
+              and digital content in a sustainable economic cycle.
             </p>
             
             <div className="bg-muted p-6 rounded-lg">
               <h4 className="font-semibold mb-4 flex items-center gap-2">
                 <ArrowRight className="h-4 w-4 text-primary" />
-                Fluxo do Ecossistema
+                Ecosystem Flow
               </h4>
               <div className="space-y-3 text-sm">
                 <div className="flex items-center gap-3">
                   <div className="w-6 h-6 rounded-full bg-primary text-primary-foreground flex items-center justify-center text-xs font-bold">1</div>
-                  <span>Mint de NFTs gera capital inicial</span>
+                  <span>NFT mint generates initial capital</span>
                 </div>
                 <div className="flex items-center gap-3">
                   <div className="w-6 h-6 rounded-full bg-primary text-primary-foreground flex items-center justify-center text-xs font-bold">2</div>
-                  <span>Capital é investido em pools de liquidez</span>
+                  <span>Capital is invested in liquidity pools</span>
                 </div>
                 <div className="flex items-center gap-3">
                   <div className="w-6 h-6 rounded-full bg-primary text-primary-foreground flex items-center justify-center text-xs font-bold">3</div>
-                  <span>Lucros financiam produção de produtos físicos</span>
+                  <span>Profits fund physical product production</span>
                 </div>
                 <div className="flex items-center gap-3">
                   <div className="w-6 h-6 rounded-full bg-primary text-primary-foreground flex items-center justify-center text-xs font-bold">4</div>
-                  <span>Vendas geram receita adicional</span>
+                  <span>Sales generate additional revenue</span>
                 </div>
                 <div className="flex items-center gap-3">
                   <div className="w-6 h-6 rounded-full bg-primary text-primary-foreground flex items-center justify-center text-xs font-bold">5</div>
-                  <span>Receitas reforçam as pools constantemente</span>
+                  <span>Revenue constantly reinforces the pools</span>
                 </div>
                 <div className="flex items-center gap-3">
                   <div className="w-6 h-6 rounded-full bg-primary text-primary-foreground flex items-center justify-center text-xs font-bold">6</div>
-                  <span>Holders recebem rewards via staking</span>
+                  <span>Holders receive rewards via staking</span>
                 </div>
               </div>
             </div>
@@ -113,29 +113,29 @@ export function OverviewSection() {
         <div className="grid gap-6 md:grid-cols-2">
           <Card>
             <CardHeader>
-              <CardTitle>Sustentabilidade Financeira</CardTitle>
+              <CardTitle>Financial Sustainability</CardTitle>
             </CardHeader>
             <CardContent className="space-y-3">
               <p>
-                Diferentemente de projetos que dependem apenas de vendas secundárias, 
-                nosso modelo gera receita contínua através de:
+                Unlike projects that depend only on secondary sales, 
+                our model generates continuous revenue through:
               </p>
               <ul className="space-y-2">
                 <li className="flex items-center gap-2">
                   <div className="w-2 h-2 rounded-full bg-primary" />
-                  <span className="text-sm">Venda de produtos físicos</span>
+                  <span className="text-sm">Physical product sales</span>
                 </li>
                 <li className="flex items-center gap-2">
                   <div className="w-2 h-2 rounded-full bg-primary" />
-                  <span className="text-sm">Receita publicitária do canal</span>
+                  <span className="text-sm">Channel advertising revenue</span>
                 </li>
                 <li className="flex items-center gap-2">
                   <div className="w-2 h-2 rounded-full bg-primary" />
-                  <span className="text-sm">Rendimentos das pools DeFi</span>
+                  <span className="text-sm">DeFi pool yields</span>
                 </li>
                 <li className="flex items-center gap-2">
                   <div className="w-2 h-2 rounded-full bg-primary" />
-                  <span className="text-sm">Royalties das vendas secundárias</span>
+                  <span className="text-sm">Secondary sales royalties</span>
                 </li>
               </ul>
             </CardContent>
@@ -143,28 +143,28 @@ export function OverviewSection() {
 
           <Card>
             <CardHeader>
-              <CardTitle>Transparência Total</CardTitle>
+              <CardTitle>Total Transparency</CardTitle>
             </CardHeader>
             <CardContent className="space-y-3">
               <p>
-                Todos os aspectos financeiros do projeto são transparentes e verificáveis:
+                All financial aspects of the project are transparent and verifiable:
               </p>
               <ul className="space-y-2">
                 <li className="flex items-center gap-2">
                   <div className="w-2 h-2 rounded-full bg-green-500" />
-                  <span className="text-sm">Carteiras públicas no blockchain</span>
+                  <span className="text-sm">Public wallets on blockchain</span>
                 </li>
                 <li className="flex items-center gap-2">
                   <div className="w-2 h-2 rounded-full bg-green-500" />
-                  <span className="text-sm">Relatórios mensais de receita</span>
+                  <span className="text-sm">Monthly revenue reports</span>
                 </li>
                 <li className="flex items-center gap-2">
                   <div className="w-2 h-2 rounded-full bg-green-500" />
-                  <span className="text-sm">Distribuição automática via smart contract</span>
+                  <span className="text-sm">Automatic distribution via smart contract</span>
                 </li>
                 <li className="flex items-center gap-2">
                   <div className="w-2 h-2 rounded-full bg-green-500" />
-                  <span className="text-sm">Auditoria externa regular</span>
+                  <span className="text-sm">Regular external audit</span>
                 </li>
               </ul>
             </CardContent>
@@ -174,16 +174,16 @@ export function OverviewSection() {
         <Card className="bg-gradient-to-r from-primary/10 to-secondary/10 border-primary/20">
           <CardContent className="pt-6">
             <div className="text-center space-y-4">
-              <h3 className="text-xl font-semibold">Resultado: Crescimento Sustentável</h3>
+              <h3 className="text-xl font-semibold">Result: Sustainable Growth</h3>
               <p className="text-muted-foreground max-w-2xl mx-auto">
-                Este modelo único garante que o valor dos NFTs cresça organicamente através de 
-                utilidades reais e fluxos de receita diversificados, criando um investimento 
-                sólido para todos os holders.
+                This unique model ensures that NFT value grows organically through 
+                real utilities and diversified revenue streams, creating a solid investment 
+                for all holders.
               </p>
               <div className="flex justify-center gap-2 flex-wrap">
-                <Badge variant="outline">Receita Recorrente</Badge>
-                <Badge variant="outline">Valor Intrínseco</Badge>
-                <Badge variant="outline">Crescimento Orgânico</Badge>
+                <Badge variant="outline">Recurring Revenue</Badge>
+                <Badge variant="outline">Intrinsic Value</Badge>
+                <Badge variant="outline">Organic Growth</Badge>
               </div>
             </div>
           </CardContent>

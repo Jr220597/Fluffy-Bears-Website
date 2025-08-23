@@ -44,21 +44,21 @@ import { PorqueLineaSection } from './components/sections/PorqueLineaSection'
 import { ThemeProvider } from './components/ThemeProvider'
 
 const sectionConfig = [
-  { id: 'introduction', title: 'Introdução', icon: BookOpen },
-  { id: 'overview', title: 'Visão Geral', icon: Eye },
-  { id: 'nft-collection', title: 'Coleção NFT', icon: Palette },
-  { id: 'tokenomics', title: 'Tokenomics', icon: Coins },
+  { id: 'introduction', title: 'Introduction', icon: BookOpen },
+  { id: 'overview', title: 'Overview', icon: Eye },
+  { id: 'nft-collection', title: 'NFT Collection', icon: Palette },
+  { id: 'tokenomics', title: 'Fluffynomics', icon: Coins },
   { id: 'mint', title: 'Mint', icon: Hammer },
-  { id: 'liquidity-pools', title: 'Pools de Liquidez', icon: Droplets },
+  { id: 'liquidity-pools', title: 'Liquidity Pools', icon: Droplets },
   { id: 'staking', title: 'Staking', icon: Star },
-  { id: 'constant-boost', title: 'Reforço Constante', icon: TrendingUp },
-  { id: 'physical-products', title: 'Produtos Físicos', icon: ShoppingBag },
-  { id: 'kids-channel', title: 'Canal Infantil', icon: Baby },
-  { id: 'economic-cycle', title: 'Ciclo Econômico', icon: RotateCcw },
+  { id: 'constant-boost', title: 'Constant Boost', icon: TrendingUp },
+  { id: 'physical-products', title: 'Physical Products', icon: ShoppingBag },
+  { id: 'kids-channel', title: 'Kids Channel', icon: Baby },
+  { id: 'economic-cycle', title: 'Economic Cycle', icon: RotateCcw },
   { id: 'roadmap', title: 'Roadmap', icon: Map },
-  { id: 'conclusion', title: 'Conclusão', icon: CheckCircle },
-  { id: 'differentials', title: 'Resumo dos Diferenciais', icon: List },
-  { id: 'porque-linea', title: 'Porque Linea?', icon: Zap },
+  { id: 'conclusion', title: 'Conclusion', icon: CheckCircle },
+  { id: 'differentials', title: 'Key Differentials', icon: List },
+  { id: 'porque-linea', title: 'Why Linea?', icon: Zap },
 ]
 
 export default function WhitepaperPage() {

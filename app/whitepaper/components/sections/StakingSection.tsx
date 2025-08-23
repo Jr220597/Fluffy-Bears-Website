@@ -13,7 +13,7 @@ export function StakingSection() {
         </div>
         <div>
           <h2 className="text-3xl font-bold">Staking</h2>
-          <p className="text-muted-foreground">Ganhe rewards passivos com seus NFTs</p>
+          <p className="text-muted-foreground">Earn passive rewards with your NFTs</p>
         </div>
       </div>
 
@@ -22,27 +22,27 @@ export function StakingSection() {
           <CardHeader>
             <CardTitle className="flex items-center gap-2">
               <Gift className="h-5 w-5 text-yellow-500" />
-              Como Funciona o Staking
+              How Staking Works
             </CardTitle>
           </CardHeader>
           <CardContent className="space-y-4">
             <p className="text-lg leading-relaxed">
-              Faça staking dos seus Fluffy Bears e receba recompensas mensais baseadas nos 
-              lucros reais do ecossistema. Quanto mais tempo em staking maiores suas recompensas.
+              Stake your Fluffy Bears and receive monthly rewards based on the 
+              ecosystem's real profits. The longer you stake, the greater your rewards.
             </p>
             
             <div className="grid gap-4 md:grid-cols-3">
               <div className="text-center p-4 rounded-lg bg-muted">
-                <div className="text-2xl font-bold text-primary">45 dias</div>
-                <div className="text-sm text-muted-foreground">Ciclo de recompensa</div>
+                <div className="text-2xl font-bold text-primary">45 days</div>
+                <div className="text-sm text-muted-foreground">Reward cycle</div>
               </div>
               <div className="text-center p-4 rounded-lg bg-muted">
-                <div className="text-2xl font-bold text-primary">7 dias</div>
-                <div className="text-sm text-muted-foreground">Tempo mínimo de stake</div>
+                <div className="text-2xl font-bold text-primary">7 days</div>
+                <div className="text-sm text-muted-foreground">Minimum stake time</div>
               </div>
               <div className="text-center p-4 rounded-lg bg-muted">
-                <div className="text-2xl font-bold text-primary">0 Taxas</div>
-                <div className="text-sm text-muted-foreground">Para entrar/sair</div>
+                <div className="text-2xl font-bold text-primary">0 Fees</div>
+                <div className="text-sm text-muted-foreground">To enter/exit</div>
               </div>
             </div>
           </CardContent>
@@ -53,37 +53,37 @@ export function StakingSection() {
           <CardHeader>
             <CardTitle className="flex items-center gap-2">
               <Calculator className="h-5 w-5 text-primary" />
-              Benefícios do Staking de Longo Prazo
+              Long-Term Staking Benefits
             </CardTitle>
           </CardHeader>
           <CardContent className="space-y-4">
-            <p>Quanto mais tempo seus NFTs ficarem em staking, maiores são os benefícios:</p>
+            <p>The longer your NFTs remain staked, the greater the benefits:</p>
             
             <div className="grid gap-4 md:grid-cols-2">
               <div className="space-y-3">
-                <h5 className="font-semibold">Staking 1-3 Meses</h5>
+                <h5 className="font-semibold">Staking 1-3 Months</h5>
                 <ul className="space-y-2 text-sm">
-                  <li>• Multiplicador base: 1x</li>
-                  <li>• Recompensas regulares</li>
-                  <li>• Benefícios básicos no ecossistema</li>
+                  <li>• Base multiplier: 1x</li>
+                  <li>• Regular rewards</li>
+                  <li>• Basic ecosystem benefits</li>
                 </ul>
               </div>
               
               <div className="space-y-3">
-                <h5 className="font-semibold">Staking 3+ Meses</h5>
+                <h5 className="font-semibold">Staking 3+ Months</h5>
                 <ul className="space-y-2 text-sm">
-                  <li>• Multiplicador: 1.5x</li>
-                  <li>• Bônus de fidelidade</li>
-                  <li>• Benefícios Premium</li>
+                  <li>• Multiplier: 1.5x</li>
+                  <li>• Loyalty bonus</li>
+                  <li>• Premium benefits</li>
                 </ul>
               </div>
             </div>
             
             <div className="mt-6 p-4 rounded-lg bg-accent/20 border border-accent">
-              <h6 className="font-semibold mb-2">🎯 Dica Pro:</h6>
+              <h6 className="font-semibold mb-2">🎯 Pro Tip:</h6>
               <p className="text-sm text-muted-foreground">
-                Holders que mantêm seus NFTs em staking por períodos mais longos recebem 
-                benefícios especiais e multiplicadores progressivos nas recompensas.
+                Holders who keep their NFTs staked for longer periods receive 
+                special benefits and progressive multipliers on rewards.
               </p>
             </div>
           </CardContent>

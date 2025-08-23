@@ -22,85 +22,85 @@ export function PorqueLineaSection() {
     {
       icon: <Shield className="h-6 w-6 text-blue-500" />,
       title: "Zero Knowledge Security",
-      description: "zkEVM com provas SNARK que garantem finalidade instantânea, diferente dos rollups otimistas com 7 dias de espera.",
-      metrics: "6,200 TPS • Finalidade Instant ânea"
+      description: "zkEVM with SNARK proofs that guarantee instant finality, unlike optimistic rollups with 7-day waiting periods.",
+      metrics: "6,200 TPS • Instant Finality"
     },
     {
       icon: <Coins className="h-6 w-6 text-green-500" />,
       title: "Native ETH Staking",
-      description: "Primeira L2 com staking nativo de ETH. Ganha rewards de staking da Ethereum + yields DeFi simultaneamente.",
-      metrics: "Duplo Yield • Outubro 2025"
+      description: "First L2 with native ETH staking. Earn Ethereum staking rewards + DeFi yields simultaneously.",
+      metrics: "Dual Yield • October 2025"
     },
     {
       icon: <TrendingUp className="h-6 w-6 text-purple-500" />,
       title: "DeFi Yields Superiores",
-      description: "TVL cresceu 499% para $412M. Etherex DEX oferece 100% das fees para stakers e rewards líquidos sem vesting.",
+      description: "TVL grew 499% to $412M. Etherex DEX offers 100% of fees to stakers and liquid rewards without vesting.",
       metrics: "499% Growth • 100% Fee Share"
     },
     {
       icon: <Network className="h-6 w-6 text-orange-500" />,
-      title: "Integração MetaMask",
-      description: "Única L2 integrada nativamente no MetaMask. Acesso direto a 30M+ usuários sem configuração manual.",
-      metrics: "30M+ Usuários • Native Support"
+      title: "MetaMask Integration",
+      description: "Only L2 natively integrated in MetaMask. Direct access to 30M+ users without manual configuration.",
+      metrics: "30M+ Users • Native Support"
     }
   ]
 
   const ecosystem = [
     {
       name: "ConsenSys",
-      role: "Desenvolvedor Principal",
-      description: "Empresa do co-fundador da Ethereum, Joseph Lubin, com experiência institucional (Mastercard, Visa, JP Morgan)",
+      role: "Lead Developer",
+      description: "Company of Ethereum co-founder Joseph Lubin, with institutional experience (Mastercard, Visa, JP Morgan)",
       highlight: "Decade+ Experience"
     },
     {
       name: "MetaMask",
-      role: "Wallet Nativo",
-      description: "Carteira mais usada do mundo com integração built-in da Linea e portfolio multichain",
+      role: "Native Wallet",
+      description: "World's most used wallet with built-in Linea integration and multichain portfolio",
       highlight: "30M+ Monthly Users"
     },
     {
       name: "Etherex",
-      role: "DEX Principal",
-      description: "DEX revolucionário baseado em Ramses v3 com 100% das fees para usuários e anti-bot protection",
+      role: "Main DEX",
+      description: "Revolutionary DEX based on Ramses v3 with 100% fees to users and anti-bot protection",
       highlight: "$203M Market Cap"
     },
     {
       name: "SharpLink",
-      role: "Parceiro Institucional", 
-      description: "Empresa Nasdaq com 728,804 ETH (~$2.6B) totalmente stakados, alimentando o ecossistema Linea",
+      role: "Institutional Partner", 
+      description: "Nasdaq company with 728,804 ETH (~$2.6B) fully staked, powering the Linea ecosystem",
       highlight: "728K ETH Holdings"
     }
   ]
 
   const technicalFeatures = [
-    "Type-1 zkEVM com compatibilidade 100% Ethereum",
-    "Custos 25-30x menores que mainnet Ethereum",
-    "Primeira L2 que queima ETH (20% das fees)",
-    "Sistema de provas lattice-based resistente a quantum",
-    "350+ aplicações no ecossistema",
-    "317,000 usuários ativos diários"
+    "Type-1 zkEVM with 100% Ethereum compatibility",
+    "25-30x lower costs than Ethereum mainnet",
+    "First L2 that burns ETH (20% of fees)",
+    "Quantum-resistant lattice-based proof system",
+    "350+ ecosystem applications",
+    "317,000 daily active users"
   ]
 
   const competitiveAdvantages = [
     {
       category: "vs Optimistic Rollups",
-      advantage: "Finalidade instantânea vs 7 dias de challenge period",
-      impact: "Trading e rewards imediatos"
+      advantage: "Instant finality vs 7-day challenge period",
+      impact: "Immediate trading and rewards"
     },
     {
-      category: "vs Outras zkEVMs", 
-      advantage: "Integração nativa MetaMask vs configuração manual",
-      impact: "Onboarding sem fricção"
+      category: "vs Other zkEVMs", 
+      advantage: "Native MetaMask integration vs manual configuration",
+      impact: "Frictionless onboarding"
     },
     {
-      category: "vs Todas L2s",
-      advantage: "Única com native ETH staking + ETH burning",
-      impact: "Duplo yield + deflação"
+      category: "vs All L2s",
+      advantage: "Only one with native ETH staking + ETH burning",
+      impact: "Dual yield + deflation"
     },
     {
       category: "vs Mainnet Ethereum",
-      advantage: "25-30x custos menores com mesma segurança",
-      impact: "Viabiliza micro-transações"
+      advantage: "25-30x lower costs with same security",
+      impact: "Enables micro-transactions"
     }
   ]
 
@@ -111,8 +111,8 @@ export function PorqueLineaSection() {
           <Zap className="h-6 w-6" />
         </div>
         <div>
-          <h2 className="text-3xl font-bold">15. Porque Linea?</h2>
-          <p className="text-muted-foreground">A blockchain que redefine yields sustentáveis</p>
+          <h2 className="text-3xl font-bold">15. Why Linea?</h2>
+          <p className="text-muted-foreground">The blockchain that redefines sustainable yields</p>
         </div>
       </div>
 
@@ -122,14 +122,14 @@ export function PorqueLineaSection() {
           <CardHeader>
             <CardTitle className="flex items-center gap-2">
               <Target className="h-5 w-5 text-blue-500" />
-              A Escolha Estratégica
+              The Strategic Choice
             </CardTitle>
           </CardHeader>
           <CardContent className="space-y-4">
             <p className="text-lg leading-relaxed">
-              Linea não é apenas mais uma Layer 2. É a única blockchain que combina <strong>segurança zkEVM</strong>, 
-              <strong> staking nativo de ETH</strong>, <strong>yields DeFi superiores</strong> e <strong>integração 
-              MetaMask nativa</strong> em um ecossistema sustentável que realmente fortalece a Ethereum.
+              Linea isn't just another Layer 2. It's the only blockchain that combines <strong>zkEVM security</strong>, 
+              <strong> native ETH staking</strong>, <strong>superior DeFi yields</strong> and <strong>native 
+              MetaMask integration</strong> in a sustainable ecosystem that truly strengthens Ethereum.
             </p>
             
             <div className="grid gap-4 md:grid-cols-4">
@@ -143,7 +143,7 @@ export function PorqueLineaSection() {
               </div>
               <div className="text-center p-4 rounded-lg bg-purple-100 dark:bg-purple-900/20">
                 <div className="text-2xl font-bold text-purple-600">25-30x</div>
-                <div className="text-sm text-purple-600">Menor Custo</div>
+                <div className="text-sm text-purple-600">Lower Cost</div>
               </div>
               <div className="text-center p-4 rounded-lg bg-orange-100 dark:bg-orange-900/20">
                 <div className="text-2xl font-bold text-orange-600">30M+</div>
@@ -180,7 +180,7 @@ export function PorqueLineaSection() {
           <CardHeader>
             <CardTitle className="flex items-center gap-2">
               <Users className="h-5 w-5 text-primary" />
-              Ecossistema Institucional
+              Institutional Ecosystem
             </CardTitle>
           </CardHeader>
           <CardContent>
@@ -206,7 +206,7 @@ export function PorqueLineaSection() {
           <CardHeader>
             <CardTitle className="flex items-center gap-2">
               <Layers className="h-5 w-5 text-primary" />
-              Vantagens Técnicas
+              Technical Advantages
             </CardTitle>
           </CardHeader>
           <CardContent>
@@ -226,7 +226,7 @@ export function PorqueLineaSection() {
           <CardHeader>
             <CardTitle className="flex items-center gap-2">
               <ArrowRight className="h-5 w-5 text-primary" />
-              Vantagem Competitiva
+              Competitive Advantage
             </CardTitle>
           </CardHeader>
           <CardContent>
@@ -253,31 +253,31 @@ export function PorqueLineaSection() {
           <CardHeader>
             <CardTitle className="flex items-center gap-2">
               <Lock className="h-5 w-5 text-green-500" />
-              Revolutionary: Native ETH Staking (Outubro 2025)
+              Revolutionary: Native ETH Staking (October 2025)
             </CardTitle>
           </CardHeader>
           <CardContent className="space-y-4">
             <p className="text-lg leading-relaxed">
-              Linea será a <strong>primeira L2</strong> a oferecer staking nativo de ETH, onde todo ETH 
-              bridgeado automaticamente entra em staking na mainnet Ethereum, gerando rewards que são 
-              reinvestidos no ecossistema DeFi da Linea.
+              Linea will be the <strong>first L2</strong> to offer native ETH staking, where all 
+              bridged ETH automatically enters staking on Ethereum mainnet, generating rewards that are 
+              reinvested in Linea's DeFi ecosystem.
             </p>
             
             <div className="grid gap-4 md:grid-cols-3">
               <div className="text-center p-4 rounded-lg bg-white/50 dark:bg-black/20">
                 <Coins className="h-8 w-8 text-green-500 mx-auto mb-2" />
-                <h5 className="font-semibold mb-1">Duplo Yield</h5>
+                <h5 className="font-semibold mb-1">Dual Yield</h5>
                 <p className="text-xs text-muted-foreground">ETH Staking + DeFi Rewards</p>
               </div>
               <div className="text-center p-4 rounded-lg bg-white/50 dark:bg-black/20">
                 <TrendingUp className="h-8 w-8 text-blue-500 mx-auto mb-2" />
-                <h5 className="font-semibold mb-1">Deflacionário</h5>
-                <p className="text-xs text-muted-foreground">20% das fees queimam ETH</p>
+                <h5 className="font-semibold mb-1">Deflationary</h5>
+                <p className="text-xs text-muted-foreground">20% of fees burn ETH</p>
               </div>
               <div className="text-center p-4 rounded-lg bg-white/50 dark:bg-black/20">
                 <Shield className="h-8 w-8 text-purple-500 mx-auto mb-2" />
-                <h5 className="font-semibold mb-1">Segurança Máxima</h5>
-                <p className="text-xs text-muted-foreground">Validadores Ethereum</p>
+                <h5 className="font-semibold mb-1">Maximum Security</h5>
+                <p className="text-xs text-muted-foreground">Ethereum Validators</p>
               </div>
             </div>
           </CardContent>
@@ -286,33 +286,33 @@ export function PorqueLineaSection() {
         {/* Why Perfect for Fluffy Bears */}
         <Card className="bg-gradient-to-r from-primary to-secondary text-primary-foreground">
           <CardHeader>
-            <CardTitle className="text-center text-xl">Perfeito para os Fluffy Bears</CardTitle>
+            <CardTitle className="text-center text-xl">Perfect for Fluffy Bears</CardTitle>
           </CardHeader>
           <CardContent className="space-y-4">
             <p className="text-center leading-relaxed opacity-90">
-              A combinação única da Linea torna nosso modelo de yield sustentável não apenas possível, 
-              mas otimizado para crescimento exponencial e rewards consistentes.
+              Linea's unique combination makes our sustainable yield model not only possible, 
+              but optimized for exponential growth and consistent rewards.
             </p>
             
             <div className="grid gap-3 md:grid-cols-2">
               <div className="flex items-center gap-3 p-3 rounded-lg bg-white/10">
                 <DollarSign className="h-5 w-5" />
                 <div>
-                  <h5 className="font-semibold text-sm">Yields Máximos</h5>
-                  <p className="text-xs opacity-80">Native staking + Etherex + Pools DeFi</p>
+                  <h5 className="font-semibold text-sm">Maximum Yields</h5>
+                  <p className="text-xs opacity-80">Native staking + Etherex + DeFi Pools</p>
                 </div>
               </div>
               <div className="flex items-center gap-3 p-3 rounded-lg bg-white/10">
                 <Users className="h-5 w-5" />
                 <div>
-                  <h5 className="font-semibold text-sm">Acesso Fácil</h5>
-                  <p className="text-xs opacity-80">30M+ usuários MetaMask nativos</p>
+                  <h5 className="font-semibold text-sm">Easy Access</h5>
+                  <p className="text-xs opacity-80">30M+ native MetaMask users</p>
                 </div>
               </div>
               <div className="flex items-center gap-3 p-3 rounded-lg bg-white/10">
                 <Shield className="h-5 w-5" />
                 <div>
-                  <h5 className="font-semibold text-sm">Segurança Total</h5>
+                  <h5 className="font-semibold text-sm">Total Security</h5>
                   <p className="text-xs opacity-80">zkEVM + ConsenSys backing</p>
                 </div>
               </div>
@@ -320,14 +320,14 @@ export function PorqueLineaSection() {
                 <Target className="h-5 w-5" />
                 <div>
                   <h5 className="font-semibold text-sm">Future-Proof</h5>
-                  <p className="text-xs opacity-80">Primeira L2 com ETH burning</p>
+                  <p className="text-xs opacity-80">First L2 with ETH burning</p>
                 </div>
               </div>
             </div>
 
             <div className="text-center pt-4 border-t border-white/20">
               <p className="text-sm font-medium">
-                Linea + Fluffy Bears = O futuro dos NFTs sustentáveis
+                Linea + Fluffy Bears = The future of sustainable NFTs
               </p>
             </div>
           </CardContent>

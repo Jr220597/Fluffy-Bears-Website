@@ -12,8 +12,8 @@ export function IntroductionSection() {
           <BookOpen className="h-6 w-6" />
         </div>
         <div>
-          <h2 className="text-3xl font-bold">Introdução</h2>
-          <p className="text-muted-foreground">Bem-vindos ao universo Fluffy Bears</p>
+          <h2 className="text-3xl font-bold">Introduction</h2>
+          <p className="text-muted-foreground">Welcome to the Fluffy Bears universe</p>
         </div>
       </div>
 
@@ -22,29 +22,29 @@ export function IntroductionSection() {
           <CardHeader>
             <CardTitle className="flex items-center gap-2">
               <Sparkles className="h-5 w-5 text-yellow-500" />
-              O que são os Fluffy Bears?
+              What are Fluffy Bears?
             </CardTitle>
           </CardHeader>
           <CardContent className="space-y-4">
             <p className="text-lg leading-relaxed">
-              Os <strong>Fluffy Bears</strong> representam uma revolução no espaço NFT, combinando arte digital exclusiva 
-              com utilidade real e um ecossistema econômico sustentável. Nossa coleção vai muito além de simples 
-              tokens digitais - ela é o portal de entrada para um universo completo de produtos, experiências 
-              e oportunidades de investimento.
+              <strong>Fluffy Bears</strong> represents a revolution in the NFT space, combining exclusive digital art 
+              with real utility and a sustainable economic ecosystem. Our collection goes far beyond simple 
+              digital tokens - it is the gateway to a complete universe of products, experiences 
+              and investment opportunities.
             </p>
             
             <div className="grid gap-4 md:grid-cols-3 mt-6">
               <div className="text-center p-4 rounded-lg bg-muted">
                 <div className="text-2xl font-bold text-primary">Exclusivos</div>
-                <div className="text-sm text-muted-foreground">NFTs Únicos</div>
+                <div className="text-sm text-muted-foreground">Unique NFTs</div>
               </div>
               <div className="text-center p-4 rounded-lg bg-muted">
                 <div className="text-2xl font-bold text-primary">Multiple</div>
-                <div className="text-sm text-muted-foreground">Utilidades Reais</div>
+                <div className="text-sm text-muted-foreground">Real Utilities</div>
               </div>
               <div className="text-center p-4 rounded-lg bg-muted">
                 <div className="text-2xl font-bold text-primary">Forever</div>
-                <div className="text-sm text-muted-foreground">Valor Sustentável</div>
+                <div className="text-sm text-muted-foreground">Sustainable Value</div>
               </div>
             </div>
           </CardContent>
@@ -54,19 +54,19 @@ export function IntroductionSection() {
           <CardHeader>
             <CardTitle className="flex items-center gap-2">
               <Target className="h-5 w-5 text-blue-500" />
-              Nossa Missão
+              Our Mission
             </CardTitle>
           </CardHeader>
           <CardContent>
             <p className="leading-relaxed">
-              Criar um ecossistema NFT sustentável que conecta o mundo digital ao físico, 
-              oferecendo valor real através de produtos tangíveis, experiências únicas e 
-              oportunidades de crescimento financeiro para nossa comunidade.
+              To create a sustainable NFT ecosystem that connects the digital world to the physical one, 
+              offering real value through tangible products, unique experiences and 
+              financial growth opportunities for our community.
             </p>
             <div className="flex flex-wrap gap-2 mt-4">
-              <Badge variant="secondary">Sustentabilidade</Badge>
-              <Badge variant="secondary">Utilidade Real</Badge>
-              <Badge variant="secondary">Comunidade</Badge>
+              <Badge variant="secondary">Sustainability</Badge>
+              <Badge variant="secondary">Real Utility</Badge>
+              <Badge variant="secondary">Community</Badge>
             </div>
           </CardContent>
         </Card>
@@ -75,19 +75,19 @@ export function IntroductionSection() {
           <CardHeader>
             <CardTitle className="flex items-center gap-2">
               <Users className="h-5 w-5 text-green-500" />
-              Nossa Visão
+              Our Vision
             </CardTitle>
           </CardHeader>
           <CardContent>
             <p className="leading-relaxed">
-              Ser a primeira coleção NFT a estabelecer um ciclo econômico completo e autossustentável, 
-              onde cada holder se beneficia do crescimento contínuo do ecossistema através de 
-              produtos físicos, conteúdo educativo e oportunidades de investimento.
+              To be the first NFT collection to establish a complete and self-sustaining economic cycle, 
+              where each holder benefits from the continuous growth of the ecosystem through 
+              physical products, educational content and investment opportunities.
             </p>
             <div className="flex flex-wrap gap-2 mt-4">
-              <Badge variant="secondary">Inovação</Badge>
-              <Badge variant="secondary">Crescimento</Badge>
-              <Badge variant="secondary">Transparência</Badge>
+              <Badge variant="secondary">Innovation</Badge>
+              <Badge variant="secondary">Growth</Badge>
+              <Badge variant="secondary">Transparency</Badge>
             </div>
           </CardContent>
         </Card>
@@ -100,12 +100,12 @@ export function IntroductionSection() {
               <Sparkles className="h-4 w-4 text-primary" />
             </div>
             <div>
-              <h4 className="font-semibold mb-2">Por que os Fluffy Bears são diferentes?</h4>
+              <h4 className="font-semibold mb-2">Why are Fluffy Bears different?</h4>
               <p className="text-muted-foreground">
-                Diferentemente de outros projetos NFT que prometem utilidades futuras, os Fluffy Bears já 
-                possuem um plano de negócios completo e implementado, com produtos físicos reais, 
-                parcerias estabelecidas e um sistema de geração de receita que beneficia diretamente 
-                todos os holders da coleção desde o dia 1.
+                Unlike other NFT projects that promise future utilities, Fluffy Bears already 
+                have a complete and implemented business plan, with real physical products, 
+                established partnerships and a revenue generation system that directly benefits 
+                all collection holders from day 1.
               </p>
             </div>
           </div>

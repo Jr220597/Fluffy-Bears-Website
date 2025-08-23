@@ -8,67 +8,67 @@ export function DifferentialsSection() {
   const differentials = [
     {
       icon: TrendingUp,
-      title: "Receita Real e Sustentável",
-      description: "Múltiplos fluxos de receita ativos que geram lucros constantes para reinvestimento",
-      highlights: ["Pools DeFi", "Produtos físicos", "Canal educativo", "Royalties"]
+      title: "Real and Sustainable Revenue",
+      description: "Multiple active revenue streams that generate consistent profits for reinvestment",
+      highlights: ["DeFi Pools", "Physical products", "Educational channel", "Royalties"]
     },
     {
       icon: Shield,
-      title: "Modelo de Negócio Comprovado",
-      description: "Estratégia baseada em princípios financeiros sólidos e não em especulação",
-      highlights: ["Investimentos conservadores", "Margem de segurança", "Auditoria externa", "Transparencia total"]
+      title: "Proven Business Model",
+      description: "Strategy based on solid financial principles and not on speculation",
+      highlights: ["Conservative investments", "Safety margin", "External audit", "Total transparency"]
     },
     {
       icon: Globe,
-      title: "Ecossistema Integrado",
-      description: "Cada componente alimenta e fortalece os demais, criando sinergia única",
-      highlights: ["NFTs + DeFi", "Digital + Físico", "Arte + Utilidade", "Entretenimento + Educação"]
+      title: "Integrated Ecosystem",
+      description: "Each component feeds and strengthens the others, creating unique synergy",
+      highlights: ["NFTs + DeFi", "Digital + Physical", "Art + Utility", "Entertainment + Education"]
     },
     {
       icon: Users,
-      title: "Comunidade com Propósito",
-      description: "Mais que holders, somos uma família unida por valores e objetivos comuns",
-      highlights: ["Educação financeira", "Conteúdo infantil", "Valores familiares", "Crescimento conjunto"]
+      title: "Community with Purpose",
+      description: "More than holders, we are a family united by common values and objectives",
+      highlights: ["Financial education", "Children's content", "Family values", "Joint growth"]
     },
     {
       icon: Zap,
-      title: "Execução Rápida",
-      description: "Não prometemos - entregamos. Utilidades já ativas e funcionais",
-      highlights: ["Staking ativo", "Produtos em produção", "Pools investidas", "Canal em desenvolvimento"]
+      title: "Fast Execution",
+      description: "We don't promise - we deliver. Utilities already active and functional",
+      highlights: ["Active staking", "Products in production", "Invested pools", "Channel in development"]
     },
     {
       icon: Star,
-      title: "Inovação no Espaço NFT",
-      description: "Primeira coleção a implementar um ciclo econômico completo e autossustentável",
-      highlights: ["Modelo pioneiro", "Referência no mercado", "Tese de investimento única", "Valor intrínseco real"]
+      title: "Innovation in NFT Space",
+      description: "First collection to implement a complete and self-sustaining economic cycle",
+      highlights: ["Pioneer model", "Market reference", "Unique investment thesis", "Real intrinsic value"]
     }
   ]
 
   const comparisons = [
     {
-      aspect: "Fonte de Valor",
-      fluffyBears: "Utilidades reais + Receita recorrente",
-      outros: "Especulação + Hype"
+      aspect: "Value Source",
+      fluffyBears: "Real utilities + Recurring revenue",
+      outros: "Speculation + Hype"
     },
     {
-      aspect: "Sustentabilidade",
-      fluffyBears: "Modelo de negócio sólido",
-      outros: "Dependente de novos investidores"
+      aspect: "Sustainability",
+      fluffyBears: "Solid business model",
+      outros: "Dependent on new investors"
     },
     {
-      aspect: "Produtos",
-      fluffyBears: "Físicos + Digitais já disponíveis",
-      outros: "Promessas futuras"
+      aspect: "Products",
+      fluffyBears: "Physical + Digital already available",
+      outros: "Future promises"
     },
     {
       aspect: "Rewards",
-      fluffyBears: "Baseados em lucros reais",
-      outros: "Tokens sem valor intrínseco"
+      fluffyBears: "Based on real profits",
+      outros: "Tokens without intrinsic value"
     },
     {
-      aspect: "Transparença",
-      fluffyBears: "Carteiras públicas + Relatórios",
-      outros: "Promessas vagas"
+      aspect: "Transparency",
+      fluffyBears: "Public wallets + Reports",
+      outros: "Vague promises"
     }
   ]
 
@@ -79,20 +79,20 @@ export function DifferentialsSection() {
           <List className="h-6 w-6" />
         </div>
         <div>
-          <h2 className="text-3xl font-bold">Resumo dos Diferenciais</h2>
-          <p className="text-muted-foreground">Por que os Fluffy Bears são únicos</p>
+          <h2 className="text-3xl font-bold">Summary of Differentials</h2>
+          <p className="text-muted-foreground">Why Fluffy Bears are unique</p>
         </div>
       </div>
 
       <div className="grid gap-6">
         <Card className="border-l-4 border-l-primary">
           <CardHeader>
-            <CardTitle>O que nos Torna Especiais</CardTitle>
+            <CardTitle>What Makes Us Special</CardTitle>
           </CardHeader>
           <CardContent>
             <p className="text-lg text-muted-foreground mb-6">
-              Em um mercado saturado de projetos NFT sem fundamento, os Fluffy Bears emergem 
-              como uma proposta verdadeiramente revolucionária e sustentável.
+              In a market saturated with unfounded NFT projects, Fluffy Bears emerges 
+              as a truly revolutionary and sustainable proposition.
             </p>
             
             <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
@@ -127,7 +127,7 @@ export function DifferentialsSection() {
 
         <Card>
           <CardHeader>
-            <CardTitle>Fluffy Bears vs. Outros Projetos NFT</CardTitle>
+            <CardTitle>Fluffy Bears vs. Other NFT Projects</CardTitle>
           </CardHeader>
           <CardContent>
             {/* Desktop Table */}
@@ -135,7 +135,7 @@ export function DifferentialsSection() {
               <table className="w-full">
                 <thead>
                   <tr className="border-b">
-                    <th className="text-left py-3 px-4 font-semibold">Aspecto</th>
+                    <th className="text-left py-3 px-4 font-semibold">Aspect</th>
                     <th className="text-left py-3 px-4 font-semibold text-primary">Fluffy Bears</th>
                     <th className="text-left py-3 px-4 font-semibold text-muted-foreground">Outros Projetos</th>
                   </tr>
@@ -163,7 +163,7 @@ export function DifferentialsSection() {
                       <div className="text-sm text-green-600 dark:text-green-400">{comp.fluffyBears}</div>
                     </div>
                     <div className="bg-muted p-3 rounded border-l-4 border-muted-foreground">
-                      <div className="text-xs font-medium text-muted-foreground mb-1">Outros Projetos</div>
+                      <div className="text-xs font-medium text-muted-foreground mb-1">Other Projects</div>
                       <div className="text-sm text-muted-foreground">{comp.outros}</div>
                     </div>
                   </div>
@@ -175,40 +175,40 @@ export function DifferentialsSection() {
 
         <Card className="bg-gradient-to-r from-yellow-500/10 to-orange-500/10 border-yellow-500/20">
           <CardHeader>
-            <CardTitle className="text-center">Resumo Executivo</CardTitle>
+            <CardTitle className="text-center">Executive Summary</CardTitle>
           </CardHeader>
           <CardContent className="space-y-4">
             <div className="grid gap-6 md:grid-cols-3">
               <div className="text-center">
-                <h5 className="font-semibold mb-2 text-yellow-600">Inovação</h5>
+                <h5 className="font-semibold mb-2 text-yellow-600">Innovation</h5>
                 <p className="text-sm text-muted-foreground">
-                  Primeiro projeto a integrar NFTs, DeFi, produtos físicos e conteúdo educativo 
-                  em um ecossistema coeso
+                  First project to integrate NFTs, DeFi, physical products and educational content 
+                  in a cohesive ecosystem
                 </p>
               </div>
               
               <div className="text-center">
-                <h5 className="font-semibold mb-2 text-orange-600">Sustentabilidade</h5>
+                <h5 className="font-semibold mb-2 text-orange-600">Sustainability</h5>
                 <p className="text-sm text-muted-foreground">
-                  Modelo econômico baseado em receitas reais, não em especulação ou novos 
-                  investidores
+                  Economic model based on real revenues, not on speculation or new 
+                  investors
                 </p>
               </div>
               
               <div className="text-center">
-                <h5 className="font-semibold mb-2 text-red-600">Impacto</h5>
+                <h5 className="font-semibold mb-2 text-red-600">Impact</h5>
                 <p className="text-sm text-muted-foreground">
-                  Além dos lucros, promovemos educação financeira e valores familiares 
-                  através do entretenimento
+                  Beyond profits, we promote financial education and family values 
+                  through entertainment
                 </p>
               </div>
             </div>
 
             <div className="mt-8 p-4 rounded-lg bg-muted border text-center">
-              <h5 className="font-semibold mb-2">Nossa Promessa</h5>
+              <h5 className="font-semibold mb-2">Our Promise</h5>
               <p className="text-sm text-muted-foreground">
-                <strong>Fluffy Bears</strong> representa o futuro dos NFTs: onde arte, tecnologia e negócio 
-                se unem para criar valor real, sustentável e duradouro para toda a comunidade.
+                <strong>Fluffy Bears</strong> represents the future of NFTs: where art, technology and business 
+                unite to create real, sustainable and lasting value for the entire community.
               </p>
             </div>
           </CardContent>
