@@ -275,6 +275,55 @@ const MintWidget = () => {
     }
   };
 
+  // Celebration effect function
+  const celebrateMintSuccess = async () => {
+    try {
+      // Dynamic import to avoid SSR issues
+      const confetti = (await import('canvas-confetti')).default;
+      
+      // Main confetti blast
+      confetti({
+        particleCount: 100,
+        spread: 70,
+        origin: { y: 0.6 },
+        colors: ['#f59e0b', '#fbbf24', '#f97316', '#fb923c', '#fdba74']
+      });
+
+      // Side confetti bursts
+      setTimeout(() => {
+        confetti({
+          particleCount: 50,
+          angle: 60,
+          spread: 55,
+          origin: { x: 0 },
+          colors: ['#f59e0b', '#fbbf24', '#f97316']
+        });
+        confetti({
+          particleCount: 50,
+          angle: 120,
+          spread: 55,
+          origin: { x: 1 },
+          colors: ['#f59e0b', '#fbbf24', '#f97316']
+        });
+      }, 200);
+
+      // Golden shower effect
+      setTimeout(() => {
+        confetti({
+          particleCount: 30,
+          startVelocity: 30,
+          spread: 360,
+          ticks: 60,
+          origin: { x: 0.5, y: 0.3 },
+          colors: ['#fbbf24', '#f59e0b'],
+          shapes: ['star']
+        });
+      }, 400);
+    } catch (error) {
+      console.log('Confetti effect not available:', error);
+    }
+  };
+
   // Effects to show transaction status
   useEffect(() => {
     if (hash) {
@@ -284,7 +333,11 @@ const MintWidget = () => {
 
   useEffect(() => {
     if (isConfirmed) {
-      setSuccess(`Mint successful!`);
+      setSuccess(`🎉 Mint successful! Welcome to the Fluffy Bears family!`);
+      // Trigger celebration effect
+      setTimeout(() => {
+        celebrateMintSuccess();
+      }, 100);
     }
   }, [isConfirmed]);
 
@@ -546,9 +599,17 @@ const MintWidget = () => {
                 )}
 
                 {success && (
-                  <div className="mt-4 p-4 bg-green-50 border border-green-200 rounded-xl text-green-700">
-                    {success}
-                  </div>
+                  <motion.div 
+                    className="mt-4 p-4 bg-green-50 border border-green-200 rounded-xl text-green-700"
+                    initial={{ opacity: 0, scale: 0.8 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    transition={{ type: "spring", duration: 0.6 }}
+                  >
+                    <div className="flex items-center gap-2">
+                      <div className="text-2xl">🎉</div>
+                      <div className="font-medium">{success}</div>
+                    </div>
+                  </motion.div>
                 )}
 
                 {hash && (
