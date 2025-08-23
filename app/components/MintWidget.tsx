@@ -93,15 +93,6 @@ const MintWidget = () => {
     setMounted(true);
   }, []);
 
-  // Refetch contract data when wallet connects or chain changes
-  useEffect(() => {
-    if (isConnected && chain?.id === LINEA_MAINNET_CHAIN_ID) {
-      refetchSaleActive();
-      refetchRemainingPremium();
-      refetchRemainingStarter();
-    }
-  }, [isConnected, chain?.id, refetchSaleActive, refetchRemainingPremium, refetchRemainingStarter]);
-
   const { address, isConnected, chain } = useAccount();
   const { data: balance } = useBalance({ address });
 
@@ -147,6 +138,15 @@ const MintWidget = () => {
       staleTime: 0,
     }
   });
+
+  // Refetch contract data when wallet connects or chain changes
+  useEffect(() => {
+    if (isConnected && chain?.id === LINEA_MAINNET_CHAIN_ID) {
+      refetchSaleActive();
+      refetchRemainingPremium();
+      refetchRemainingStarter();
+    }
+  }, [isConnected, chain?.id, refetchSaleActive, refetchRemainingPremium, refetchRemainingStarter]);
 
   const { data: premiumMinted } = useReadContract({
     address: SALE_CONTRACT,
@@ -356,10 +356,22 @@ const MintWidget = () => {
     return formatEther(total);
   };
 
+  // Check if user has sufficient balance
+  const hasInsufficientBalance = () => {
+    if (!balance || !isConnected) return false;
+    
+    const price = selectedBundle === 'premium' ? premiumPrice : starterPrice;
+    if (!price) return false;
+    
+    const totalCost = price * BigInt(quantity);
+    return balance.value < totalCost;
+  };
+
   // Check if can mint
   const canMint = () => {
     if (!isConnected || !saleActive || isPending || isConfirming) return false;
     if (chain?.id !== LINEA_MAINNET_CHAIN_ID) return false;
+    if (hasInsufficientBalance()) return false;
     
     const maxAllowed = Math.min(currentBundle.maxPerWallet - currentBundle.minted, currentBundle.available);
     return maxAllowed >= quantity;
@@ -442,30 +454,12 @@ const MintWidget = () => {
           {isConnected && (
             <div className="grid md:grid-cols-2 gap-6 mb-8">
               <div className="bg-amber-50 rounded-xl p-4">
-                <div className="flex items-center justify-between mb-3">
+                <div className="mb-3">
                   <h3 className="text-lg font-bold text-amber-900">Sale Status</h3>
-                  <Button 
-                    variant="outline" 
-                    size="sm"
-                    onClick={() => {
-                      refetchSaleActive();
-                      refetchRemainingPremium();
-                      refetchRemainingStarter();
-                    }}
-                    className="text-xs"
-                  >
-                    🔄 Refresh
-                  </Button>
                 </div>
                 <p><strong>Sale Active:</strong> {saleActive === undefined ? '⏳ Loading...' : (saleActive ? '✅ Yes' : '❌ No')}</p>
                 <p><strong>Premium Remaining:</strong> {remainingPremium?.toString() || '0'}</p>
                 <p><strong>Starter Remaining:</strong> {remainingStarter?.toString() || '0'}</p>
-                {process.env.NODE_ENV === 'development' && (
-                  <div className="mt-2 pt-2 border-t border-amber-200 text-xs text-amber-600">
-                    <p>Debug: saleActive = {String(saleActive)}</p>
-                    <p>Contract: {SALE_CONTRACT.slice(0, 6)}...{SALE_CONTRACT.slice(-4)}</p>
-                  </div>
-                )}
               </div>
               
               <div className="bg-amber-50 rounded-xl p-4">
@@ -595,6 +589,21 @@ const MintWidget = () => {
                 {error && (
                   <div className="mt-4 p-4 bg-red-50 border border-red-200 rounded-xl text-red-700">
                     {error}
+                  </div>
+                )}
+
+                {/* Insufficient Balance Warning */}
+                {isConnected && hasInsufficientBalance() && (
+                  <div className="mt-4 p-4 bg-yellow-50 border border-yellow-200 rounded-xl text-yellow-800">
+                    <div className="flex items-center gap-2">
+                      <div className="text-xl">⚠️</div>
+                      <div>
+                        <p className="font-medium">Insufficient balance to mint</p>
+                        <p className="text-sm text-yellow-700">
+                          You need {calculateTotal()} ETH, but only have {balance ? parseFloat(formatEther(balance.value)).toFixed(4) : '0'} ETH
+                        </p>
+                      </div>
+                    </div>
                   </div>
                 )}
 
