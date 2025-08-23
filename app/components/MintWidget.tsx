@@ -93,14 +93,27 @@ const MintWidget = () => {
     setMounted(true);
   }, []);
 
+  // Refetch contract data when wallet connects or chain changes
+  useEffect(() => {
+    if (isConnected && chain?.id === LINEA_MAINNET_CHAIN_ID) {
+      refetchSaleActive();
+      refetchRemainingPremium();
+      refetchRemainingStarter();
+    }
+  }, [isConnected, chain?.id, refetchSaleActive, refetchRemainingPremium, refetchRemainingStarter]);
+
   const { address, isConnected, chain } = useAccount();
   const { data: balance } = useBalance({ address });
 
   // Contract reads
-  const { data: saleActive } = useReadContract({
+  const { data: saleActive, refetch: refetchSaleActive } = useReadContract({
     address: SALE_CONTRACT,
     abi: saleAbi,
     functionName: 'saleActive',
+    query: {
+      refetchInterval: 5000, // Refetch every 5 seconds
+      staleTime: 0, // Always consider data stale
+    }
   });
 
   const { data: premiumPrice } = useReadContract({
@@ -115,16 +128,24 @@ const MintWidget = () => {
     functionName: 'STARTER_PRICE',
   });
 
-  const { data: remainingPremium } = useReadContract({
+  const { data: remainingPremium, refetch: refetchRemainingPremium } = useReadContract({
     address: NFT_CONTRACT,
     abi: nftAbi,
     functionName: 'remainingPremium',
+    query: {
+      refetchInterval: 10000, // Refetch every 10 seconds
+      staleTime: 0,
+    }
   });
 
-  const { data: remainingStarter } = useReadContract({
+  const { data: remainingStarter, refetch: refetchRemainingStarter } = useReadContract({
     address: NFT_CONTRACT,
     abi: nftAbi,
     functionName: 'remainingStarter',
+    query: {
+      refetchInterval: 10000, // Refetch every 10 seconds
+      staleTime: 0,
+    }
   });
 
   const { data: premiumMinted } = useReadContract({
@@ -368,10 +389,30 @@ const MintWidget = () => {
           {isConnected && (
             <div className="grid md:grid-cols-2 gap-6 mb-8">
               <div className="bg-amber-50 rounded-xl p-4">
-                <h3 className="text-lg font-bold text-amber-900 mb-3">Sale Status</h3>
-                <p><strong>Sale Active:</strong> {saleActive ? '✅ Yes' : '❌ No'}</p>
+                <div className="flex items-center justify-between mb-3">
+                  <h3 className="text-lg font-bold text-amber-900">Sale Status</h3>
+                  <Button 
+                    variant="outline" 
+                    size="sm"
+                    onClick={() => {
+                      refetchSaleActive();
+                      refetchRemainingPremium();
+                      refetchRemainingStarter();
+                    }}
+                    className="text-xs"
+                  >
+                    🔄 Refresh
+                  </Button>
+                </div>
+                <p><strong>Sale Active:</strong> {saleActive === undefined ? '⏳ Loading...' : (saleActive ? '✅ Yes' : '❌ No')}</p>
                 <p><strong>Premium Remaining:</strong> {remainingPremium?.toString() || '0'}</p>
                 <p><strong>Starter Remaining:</strong> {remainingStarter?.toString() || '0'}</p>
+                {process.env.NODE_ENV === 'development' && (
+                  <div className="mt-2 pt-2 border-t border-amber-200 text-xs text-amber-600">
+                    <p>Debug: saleActive = {String(saleActive)}</p>
+                    <p>Contract: {SALE_CONTRACT.slice(0, 6)}...{SALE_CONTRACT.slice(-4)}</p>
+                  </div>
+                )}
               </div>
               
               <div className="bg-amber-50 rounded-xl p-4">
