@@ -9,7 +9,12 @@
       "Bash(cp:*)",
       "Bash(npm run lint)",
       "Bash(npm run build:*)",
-      "Bash(rm:*)"
+      "Bash(rm:*)",
+      "Bash(cmd /c:*)",
+      "Bash(powershell:*)",
+      "Bash(netsh:*)",
+      "WebSearch",
+      "Bash(git add:*)"
     ],
     "deny": []
   }

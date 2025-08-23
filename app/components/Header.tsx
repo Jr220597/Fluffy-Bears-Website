@@ -30,7 +30,7 @@ const Header = () => {
   const navItems = [
     { label: 'Home', href: '/' },
     { label: 'Stake', href: '/stake' },
-    { label: 'Whitepaper', href: '#' },
+    { label: 'Whitepaper', href: '/whitepaper' },
     { label: 'Shop', href: '#' },
     { label: 'Mint', href: '/mint' },
   ];
@@ -72,11 +72,11 @@ const Header = () => {
     >
       <div className="max-w-7xl mx-auto flex items-center justify-between">
         {/* Animated Logo with Sparkles */}
-        <div className="group relative ml-8">
+        <div className="group relative ml-2 md:ml-8">
           <Link href="/" className="flex items-center">
             <motion.div 
               ref={logoRef}
-              className="h-16 w-16 relative overflow-hidden rounded-full border-2 border-amber-400 shadow-lg group-hover:shadow-2xl transition-all duration-500"
+              className="h-12 w-12 md:h-16 md:w-16 relative overflow-hidden rounded-full border-2 border-amber-400 shadow-lg group-hover:shadow-2xl transition-all duration-500"
               whileHover={{ rotate: 360, scale: 1.1 }}
               transition={{ duration: 0.6, ease: "easeInOut" }}
             >
@@ -91,7 +91,7 @@ const Header = () => {
               />
             </motion.div>
             
-            <motion.div className="ml-2">
+            <motion.div className="ml-2 hidden sm:block">
               <Image 
                 src="/Images/textologo.png" 
                 alt="Fluffy Bears Text" 

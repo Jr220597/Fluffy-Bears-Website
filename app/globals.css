@@ -98,6 +98,7 @@
     position: relative;
     overflow: hidden;
     will-change: transform;
+    scroll-margin-top: 2rem;
   }
 }
 
@@ -474,6 +475,29 @@
   body * {
     cursor: auto !important;
   }
+  
+  /* Improve touch targets */
+  button, a, [role="button"] {
+    min-height: 44px;
+    min-width: 44px;
+  }
+  
+  /* Better text sizing */
+  h1 { font-size: 1.75rem; }
+  h2 { font-size: 1.5rem; }
+  h3 { font-size: 1.25rem; }
+  
+  /* Optimize spacing for smaller screens */
+  section {
+    min-height: 100vh;
+    padding: 1rem 0.5rem;
+  }
+  
+  /* Improve mobile navigation */
+  nav a {
+    padding: 0.875rem 1rem;
+    font-size: 1rem;
+  }
 }
 
 /* Reduce motion for accessibility */
@@ -582,6 +606,16 @@
   transform: scale(0.98);
 }
 
+/* Enhanced mobile touch feedback */
+@media (max-width: 768px) {
+  button:active, 
+  a:active, 
+  [role="button"]:active {
+    transform: scale(0.95);
+    transition: transform 0.1s ease;
+  }
+}
+
 /* Add a smooth shimmer effect on hover for nav links */
 .nav-item::before {
   content: "";
@@ -621,4 +655,730 @@
   animation: slide-in-up 0.3s ease forwards;
   animation-delay: calc(var(--idx) * 60ms);
   opacity: 0;
+}
+
+/* Whitepaper Mobile Optimizations */
+@media (max-width: 1024px) {
+  /* Whitepaper content spacing */
+  .whitepaper-section {
+    padding: 1.5rem 0;
+    overflow-x: hidden;
+    word-wrap: break-word;
+  }
+  
+  .whitepaper-section h2 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+  }
+  
+  .whitepaper-section h3 {
+    font-size: 1.25rem;
+    margin-bottom: 0.75rem;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+  }
+  
+  .whitepaper-section p {
+    font-size: 0.875rem;
+    line-height: 1.6;
+    margin-bottom: 1rem;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+  }
+  
+  /* Card components responsive */
+  .whitepaper-card {
+    padding: 1rem;
+    margin-bottom: 1rem;
+    box-sizing: border-box;
+    max-width: 100%;
+    overflow: hidden;
+  }
+  
+  /* Table responsive */
+  .whitepaper-table {
+    font-size: 0.875rem;
+    width: 100%;
+    table-layout: fixed;
+  }
+  
+  .whitepaper-table th,
+  .whitepaper-table td {
+    padding: 0.5rem;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+  }
+}
+
+@media (max-width: 640px) {
+  /* Extra small screens */
+  .whitepaper-section {
+    padding: 1rem 0;
+    overflow-x: hidden;
+    word-wrap: break-word;
+  }
+  
+  .whitepaper-section h2 {
+    font-size: 1.25rem;
+    line-height: 1.3;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    hyphens: auto;
+  }
+  
+  .whitepaper-section h3 {
+    font-size: 1.125rem;
+    line-height: 1.3;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    hyphens: auto;
+  }
+  
+  .whitepaper-section p {
+    font-size: 0.875rem;
+    line-height: 1.5;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    hyphens: auto;
+  }
+  
+  .whitepaper-card {
+    padding: 0.75rem;
+    box-sizing: border-box;
+    max-width: 100%;
+    overflow: hidden;
+    word-wrap: break-word;
+  }
+  
+  /* Make tables scroll horizontally */
+  .whitepaper-table-container {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    max-width: 100%;
+    margin: 0 -1rem;
+    padding: 0 1rem;
+  }
+  
+  .whitepaper-table {
+    min-width: 500px;
+    font-size: 0.75rem;
+    width: 100%;
+  }
+  
+  .whitepaper-table th,
+  .whitepaper-table td {
+    padding: 0.375rem;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    max-width: 150px;
+    overflow: hidden;
+  }
+}
+
+/* Improved touch targets for whitepaper */
+@media (max-width: 768px) {
+  .whitepaper-button,
+  .whitepaper-link {
+    min-height: 44px;
+    min-width: 44px;
+    padding: 0.75rem 1rem;
+  }
+  
+  /* Better spacing for lists */
+  .whitepaper-list li {
+    margin-bottom: 0.5rem;
+    line-height: 1.5;
+  }
+  
+  /* Responsive images in whitepaper */
+  .whitepaper-image {
+    max-width: 100%;
+    height: auto;
+  }
+  
+  /* Code blocks responsive */
+  .whitepaper-code {
+    font-size: 0.75rem;
+    padding: 0.5rem;
+    overflow-x: auto;
+  }
+  
+  /* Fix for whitepaper mobile layout issues */
+  [data-radix-portal] {
+    z-index: 9999 !important;
+  }
+  
+  /* Ensure all whitepaper content fits properly */
+  .whitepaper-container {
+    max-width: 100vw;
+    overflow-x: hidden;
+    box-sizing: border-box;
+  }
+  
+  .whitepaper-container * {
+    max-width: 100%;
+    box-sizing: border-box;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+  }
+  
+  /* Fix card layouts specifically */
+  [data-whitepaper] .card,
+  [data-whitepaper] .card-content,
+  [data-whitepaper] .card-header {
+    max-width: 100%;
+    overflow: hidden;
+    box-sizing: border-box;
+    word-wrap: break-word;
+  }
+  
+  /* Fix for text overflow in mobile */
+  [data-whitepaper] h1,
+  [data-whitepaper] h2,
+  [data-whitepaper] h3,
+  [data-whitepaper] h4,
+  [data-whitepaper] h5,
+  [data-whitepaper] h6,
+  [data-whitepaper] p,
+  [data-whitepaper] div,
+  [data-whitepaper] span {
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    hyphens: auto;
+    max-width: 100%;
+  }
+  
+  /* Fix grid layouts in whitepaper */
+  [data-whitepaper] .grid {
+    display: grid;
+    gap: 1rem;
+    grid-template-columns: 1fr;
+  }
+  
+  [data-whitepaper] .grid.md\:grid-cols-2 {
+    grid-template-columns: 1fr;
+  }
+  
+  [data-whitepaper] .grid.md\:grid-cols-3 {
+    grid-template-columns: 1fr;
+  }
+  
+  /* Better spacing for cards */
+  [data-whitepaper] .card {
+    margin-bottom: 1rem;
+    overflow: hidden;
+    max-width: 100%;
+    box-sizing: border-box;
+  }
+  
+  [data-whitepaper] .card-content,
+  [data-whitepaper] .card-header {
+    padding: 0.75rem;
+    overflow: hidden;
+    word-wrap: break-word;
+  }
+  
+  /* Fix text sizing in mobile */
+  [data-whitepaper] .text-3xl {
+    font-size: 1.5rem;
+    line-height: 1.3;
+  }
+  
+  [data-whitepaper] .text-2xl {
+    font-size: 1.25rem;
+    line-height: 1.3;
+  }
+  
+  [data-whitepaper] .text-lg {
+    font-size: 1rem;
+    line-height: 1.5;
+  }
+  
+  /* Fix columns that span full width */
+  [data-whitepaper] .col-span-full {
+    grid-column: 1 / -1;
+    max-width: 100%;
+    overflow: hidden;
+  }
+}
+
+/* Tablet optimizations */
+@media (min-width: 641px) and (max-width: 1023px) {
+  [data-whitepaper] .grid.md\:grid-cols-2 {
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+  }
+  
+  [data-whitepaper] .grid.md\:grid-cols-3 {
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+  }
+  
+  [data-whitepaper] .text-3xl {
+    font-size: 2rem;
+    line-height: 1.2;
+  }
+  
+  [data-whitepaper] .text-2xl {
+    font-size: 1.5rem;
+    line-height: 1.3;
+  }
+  
+  [data-whitepaper] .card-content,
+  [data-whitepaper] .card-header {
+    padding: 1rem;
+  }
+}
+
+/* Desktop responsive corrections */
+@media (min-width: 1024px) {
+  [data-whitepaper] .grid.md\:grid-cols-2 {
+    grid-template-columns: 1fr 1fr;
+  }
+  
+  [data-whitepaper] .grid.md\:grid-cols-3 {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+  
+  [data-whitepaper] .grid.lg\:grid-cols-3 {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+  
+  [data-whitepaper] .grid.md\:grid-cols-4 {
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+  }
+}
+
+/* Specific fixes for problematic sections */
+@media (max-width: 768px) {
+  /* Roadmap Timeline fixes */
+  [data-whitepaper] .relative.flex.items-start {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 1rem;
+  }
+  
+  [data-whitepaper] .absolute.left-8 {
+    display: none; /* Hide timeline line on mobile */
+  }
+  
+  [data-whitepaper] .relative.z-10.flex.items-center.justify-center {
+    position: relative;
+    width: 40px;
+    height: 40px;
+    margin: 0 auto 1rem auto;
+  }
+  
+  /* Table horizontal scroll */
+  [data-whitepaper] .overflow-x-auto {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    margin: 0 -1rem;
+    padding: 0 1rem;
+  }
+  
+  [data-whitepaper] table {
+    min-width: 600px;
+    font-size: 0.875rem;
+  }
+  
+  [data-whitepaper] table th,
+  [data-whitepaper] table td {
+    padding: 0.75rem 0.5rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 200px;
+  }
+  
+  /* Fix grid layouts for these specific sections */
+  [data-whitepaper] .grid.lg\:grid-cols-3 {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+  
+  [data-whitepaper] .grid.md\:grid-cols-4 {
+    grid-template-columns: 1fr 1fr;
+    gap: 0.75rem;
+  }
+  
+  /* Better spacing for cards in these sections */
+  [data-whitepaper] .space-y-8 > * + * {
+    margin-top: 1.5rem;
+  }
+  
+  [data-whitepaper] .space-y-6 > * + * {
+    margin-top: 1rem;
+  }
+  
+  /* Fix flex layouts */
+  [data-whitepaper] .flex.justify-center.gap-4.flex-wrap {
+    gap: 0.5rem;
+    justify-content: center;
+  }
+  
+  /* Better badge wrapping */
+  [data-whitepaper] .flex.flex-wrap.gap-1 {
+    gap: 0.25rem;
+  }
+  
+  /* Fix gradient cards */
+  [data-whitepaper] .bg-gradient-to-r {
+    background: linear-gradient(135deg, var(--primary), var(--secondary));
+    color: white;
+  }
+  
+  /* Fix timeline content cards */
+  [data-whitepaper] .flex-1 .card {
+    width: 100%;
+    max-width: 100%;
+    overflow: hidden;
+  }
+  
+  /* Fix progress overview cards */
+  [data-whitepaper] .text-center.p-4.rounded-lg {
+    padding: 0.75rem 0.5rem;
+    min-width: 100px;
+  }
+  
+  [data-whitepaper] .text-center.p-4.rounded-lg .text-2xl {
+    font-size: 1rem;
+    line-height: 1.2;
+  }
+  
+  [data-whitepaper] .text-center.p-4.rounded-lg .text-sm {
+    font-size: 0.75rem;
+  }
+  
+  /* Specific fixes for conclusion and differentials sections */
+  
+  /* Fix list items in conclusion/differentials */
+  [data-whitepaper] ul.space-y-2 {
+    space-y: 0.5rem;
+  }
+  
+  [data-whitepaper] ul.space-y-2 li {
+    margin-bottom: 0.5rem;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+  }
+  
+  [data-whitepaper] ul.space-y-3 {
+    space-y: 0.75rem;
+  }
+  
+  [data-whitepaper] ul.space-y-3 li {
+    margin-bottom: 0.75rem;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+  }
+  
+  /* Fix card headers with icons */
+  [data-whitepaper] .card-header .flex.items-center.gap-3 {
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+  
+  [data-whitepaper] .card-header .flex.items-center.gap-2 {
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+  
+  /* Fix icon containers */
+  [data-whitepaper] .w-10.h-10.rounded-lg,
+  [data-whitepaper] .w-12.h-12.rounded-xl {
+    flex-shrink: 0;
+  }
+  
+  /* Fix badge containers */
+  [data-whitepaper] .pt-6.border-t .grid {
+    grid-template-columns: 1fr;
+    gap: 0.5rem;
+    text-align: center;
+  }
+  
+  /* Fix comparison table on mobile */
+  [data-whitepaper] table tbody tr {
+    display: block;
+    border: 1px solid var(--border);
+    margin-bottom: 0.5rem;
+    border-radius: 0.5rem;
+    padding: 0.5rem;
+  }
+  
+  [data-whitepaper] table tbody tr td {
+    display: block;
+    padding: 0.25rem 0;
+    border: none;
+    text-align: left;
+    max-width: none;
+    white-space: normal;
+  }
+  
+  [data-whitepaper] table tbody tr td:first-child {
+    font-weight: bold;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 0.25rem;
+    padding-bottom: 0.25rem;
+  }
+  
+  [data-whitepaper] table thead {
+    display: none;
+  }
+  
+  /* Better spacing for nested cards */
+  [data-whitepaper] .card .card {
+    margin-bottom: 0.75rem;
+  }
+  
+  /* Fix long text overflow in differentials */
+  [data-whitepaper] .leading-tight {
+    line-height: 1.3;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    hyphens: auto;
+  }
+  
+  /* Fix gradient text on mobile */
+  [data-whitepaper] .bg-gradient-to-r.from-primary.to-secondary {
+    background: var(--primary);
+    color: white;
+  }
+  
+  /* Specific fixes for "Resumo dos Diferenciais" section */
+  
+  /* Fix the main differentials grid */
+  [data-whitepaper] #differentials .grid.md\\:grid-cols-2.lg\\:grid-cols-3 {
+    grid-template-columns: 1fr !important;
+    gap: 1rem !important;
+  }
+  
+  /* Fix card heights in differentials */
+  [data-whitepaper] #differentials .card.h-full {
+    height: auto !important;
+    min-height: unset !important;
+  }
+  
+  /* Fix card headers in differentials */
+  [data-whitepaper] #differentials .card-header.pb-3 {
+    padding-bottom: 0.5rem;
+  }
+  
+  [data-whitepaper] #differentials .flex.items-center.gap-3.mb-2 {
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 0.5rem;
+  }
+  
+  /* Fix icon containers in differentials */
+  [data-whitepaper] #differentials .w-10.h-10.rounded-lg {
+    width: 2rem;
+    height: 2rem;
+    flex-shrink: 0;
+  }
+  
+  /* Fix font sizes in differentials cards */
+  [data-whitepaper] #differentials .font-semibold.text-sm.leading-tight {
+    font-size: 0.875rem;
+    line-height: 1.3;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+  }
+  
+  /* Fix badge wrapping in differentials */
+  [data-whitepaper] #differentials .flex.flex-wrap.gap-1 {
+    gap: 0.25rem;
+    justify-content: flex-start;
+  }
+  
+  [data-whitepaper] #differentials .badge,
+  [data-whitepaper] #differentials .text-xs {
+    font-size: 0.75rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 120px;
+  }
+  
+  /* Fix comparison table in differentials section specifically */
+  [data-whitepaper] #differentials table {
+    width: 100%;
+    display: block;
+    overflow-x: auto;
+    white-space: nowrap;
+  }
+  
+  [data-whitepaper] #differentials table thead,
+  [data-whitepaper] #differentials table tbody,
+  [data-whitepaper] #differentials table tr {
+    display: block;
+  }
+  
+  [data-whitepaper] #differentials table thead {
+    display: none;
+  }
+  
+  [data-whitepaper] #differentials table tbody tr {
+    border: 1px solid var(--border);
+    border-radius: 0.5rem;
+    padding: 0.75rem;
+    margin-bottom: 0.75rem;
+    display: block;
+    white-space: normal;
+  }
+  
+  [data-whitepaper] #differentials table tbody tr td {
+    display: block;
+    padding: 0.25rem 0;
+    border: none;
+    white-space: normal;
+    max-width: none;
+    text-align: left;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+  }
+  
+  [data-whitepaper] #differentials table tbody tr td:first-child {
+    font-weight: bold;
+    color: var(--primary);
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 0.5rem;
+    margin-bottom: 0.5rem;
+  }
+  
+  [data-whitepaper] #differentials table tbody tr td:nth-child(2)::before {
+    content: "Fluffy Bears: ";
+    font-weight: bold;
+    color: var(--foreground);
+  }
+  
+  [data-whitepaper] #differentials table tbody tr td:nth-child(3)::before {
+    content: "Outros: ";
+    font-weight: bold;
+    color: var(--muted-foreground);
+  }
+  
+  /* Fix the executive summary grid */
+  [data-whitepaper] #differentials .grid.gap-6.md\\:grid-cols-3 {
+    grid-template-columns: 1fr !important;
+    gap: 1rem !important;
+  }
+  
+  /* Fix text-center content in summary */
+  [data-whitepaper] #differentials .text-center {
+    text-align: left;
+    padding: 1rem;
+  }
+  
+  [data-whitepaper] #differentials .text-center h5 {
+    font-size: 1rem;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+    text-align: center;
+  }
+  
+  [data-whitepaper] #differentials .text-center p {
+    font-size: 0.875rem;
+    line-height: 1.5;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    text-align: left;
+  }
+  
+  /* Force mobile layout for differentials section */
+  [data-whitepaper] section#differentials {
+    padding: 1rem;
+    box-sizing: border-box;
+    max-width: 100vw;
+    overflow-x: hidden;
+  }
+  
+  [data-whitepaper] section#differentials * {
+    box-sizing: border-box;
+    max-width: 100%;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+  }
+  
+  /* Force single column for all grids in differentials */
+  [data-whitepaper] section#differentials .grid {
+    display: grid !important;
+    grid-template-columns: 1fr !important;
+    gap: 1rem !important;
+    width: 100% !important;
+  }
+  
+  /* Override all possible grid classes */
+  [data-whitepaper] section#differentials .md\\:grid-cols-2,
+  [data-whitepaper] section#differentials .md\\:grid-cols-3,
+  [data-whitepaper] section#differentials .lg\\:grid-cols-3 {
+    grid-template-columns: 1fr !important;
+  }
+  
+  /* Fix cards specifically */
+  [data-whitepaper] section#differentials .card {
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 0 0 1rem 0 !important;
+    padding: 0.75rem !important;
+    box-sizing: border-box !important;
+    overflow: hidden !important;
+  }
+  
+  /* Fix card content */
+  [data-whitepaper] section#differentials .card-content,
+  [data-whitepaper] section#differentials .card-header {
+    padding: 0.75rem !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+  }
+  
+  /* Fix text in cards */
+  [data-whitepaper] section#differentials h4,
+  [data-whitepaper] section#differentials h5,
+  [data-whitepaper] section#differentials p,
+  [data-whitepaper] section#differentials span {
+    font-size: 0.875rem !important;
+    line-height: 1.4 !important;
+    word-wrap: break-word !important;
+    overflow-wrap: break-word !important;
+    hyphens: auto !important;
+    max-width: 100% !important;
+  }
+  
+  /* Fix badges container */
+  [data-whitepaper] section#differentials .flex-wrap {
+    display: flex !important;
+    flex-wrap: wrap !important;
+    gap: 0.25rem !important;
+    justify-content: flex-start !important;
+  }
+  
+  /* Fix individual badges */
+  [data-whitepaper] section#differentials .badge,
+  [data-whitepaper] section#differentials [class*="badge"] {
+    font-size: 0.625rem !important;
+    padding: 0.25rem 0.5rem !important;
+    white-space: normal !important;
+    overflow: visible !important;
+    text-overflow: unset !important;
+    max-width: none !important;
+    flex-shrink: 0 !important;
+  }
+  
+  /* Completely rebuild the comparison table for mobile */
+  [data-whitepaper] section#differentials .overflow-x-auto {
+    overflow: visible !important;
+  }
+  
+  [data-whitepaper] section#differentials table {
+    display: none !important;
+  }
+  
+  /* Create mobile-friendly comparison cards */
+  [data-whitepaper] section#differentials .comparison-mobile {
+    display: block !important;
+  }
 } 

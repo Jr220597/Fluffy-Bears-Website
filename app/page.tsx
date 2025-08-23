@@ -30,9 +30,9 @@ export default function Home() {
         </div>
 
         <Header />
-        <div className="relative z-10 flex flex-col items-center justify-center min-h-screen pt-20">
+        <div className="relative z-10 flex flex-col items-center justify-center min-h-screen pt-20 px-4">
           <motion.div 
-            className="w-64 h-64 md:w-80 md:h-80 relative"
+            className="w-60 h-60 sm:w-80 sm:h-80 md:w-96 md:h-96 lg:w-[420px] lg:h-[420px] relative"
             initial={{ scale: 0.8, opacity: 0 }}
             animate={{ 
               scale: [1, 1.05, 1], 
@@ -78,19 +78,6 @@ export default function Home() {
             <TransitionText />
           </motion.div>
 
-          <motion.div 
-            className="w-full max-w-4xl mx-auto mt-4 relative h-72 md:h-96"
-            initial={{ y: 100, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            transition={{ delay: 0.6, duration: 1 }}
-          >
-            <Image 
-              src="/Images/CapaFluffy.png" 
-              alt="Fluffy Bears Characters" 
-              fill
-              style={{ objectFit: 'contain' }}
-            />
-          </motion.div>
         </div>
       </motion.section>
 

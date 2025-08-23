@@ -67,7 +67,7 @@ const TransitionText = () => {
   const currentPhrase = phrases[currentIndex];
 
   return (
-    <div className="bg-amber-400 hover:bg-amber-500 text-amber-950 rounded-full px-8 py-6 h-auto text-lg md:text-xl font-bold border-2 border-amber-600 hover:border-amber-700 shadow-md transition-all duration-300 inline-block min-w-[280px] md:min-w-[320px]">
+    <div className="bg-amber-400 hover:bg-amber-500 text-amber-950 rounded-full px-11 py-7 h-auto text-xl md:text-2xl lg:text-3xl font-bold border-2 border-amber-600 hover:border-amber-700 shadow-md transition-all duration-300 inline-block min-w-[340px] md:min-w-[380px] lg:min-w-[440px]">
       <AnimatePresence mode="wait">
         <motion.div
           key={currentIndex}
