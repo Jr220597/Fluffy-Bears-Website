@@ -34,7 +34,7 @@ export function EconomicCycleDiagramNew({ className = "", data }: DiagramProps) 
   const defaultData = {
     mint: {
       description: "Initial sale of NFTs on Linea blockchain.",
-      kpis: { "Supply": "Coming Soon", "Price": "0.025 ETH", "Blockchain": "Linea" }
+      kpis: { "Supply": "Coming Soon", "Price": "0.01 ETH", "Blockchain": "Linea" }
     },
     products: {
       description: "Production and sale of Fluffy Bears 3D plushies.",

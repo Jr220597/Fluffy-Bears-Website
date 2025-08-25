@@ -10,8 +10,8 @@ import { parseEther, formatEther } from 'viem';
 import { ConnectButton } from '@rainbow-me/rainbowkit';
 
 // Contracts on Linea Mainnet
-const NFT_CONTRACT = '0x4fAE020922b41481108002BAd45299B076B22abD';
-const SALE_CONTRACT = '0xE67C03109B36BAdf098db753204305E00B7Df971';
+const NFT_CONTRACT = '0xa0e9f59852d0A1d9fcBAD7Ba23fD7cd76587A0A9';
+const SALE_CONTRACT = '0x9194c5152315C5523Da5FF6Fa53c3F21E29CaD58';
 const LINEA_MAINNET_CHAIN_ID = 59144;
 
 // Minimal ABIs
@@ -174,7 +174,7 @@ const MintWidget = () => {
     premium: {
       name: 'Premium Bundle',
       nfts: 10,
-      price: premiumPrice ? formatEther(premiumPrice) : '0',
+      price: premiumPrice ? formatEther(premiumPrice) : '0.08',
       available: remainingPremium ? Number(remainingPremium) : 0,
       minted: premiumMinted ? Number(premiumMinted) : 0,
       maxPerWallet: 10,
@@ -183,7 +183,7 @@ const MintWidget = () => {
     starter: {
       name: 'Starter Bundle',
       nfts: 5,
-      price: starterPrice ? formatEther(starterPrice) : '0',
+      price: starterPrice ? formatEther(starterPrice) : '0.045',
       available: remainingStarter ? Number(remainingStarter) : 0,
       minted: starterMinted ? Number(starterMinted) : 0,
       maxPerWallet: 10,

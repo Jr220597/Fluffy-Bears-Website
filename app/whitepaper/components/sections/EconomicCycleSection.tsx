@@ -72,7 +72,7 @@ export function EconomicCycleSection() {
           data={{
             mint: {
               description: "Initial sale of NFTs on Linea blockchain.",
-              kpis: { "Supply": "Coming Soon", "Price": "0.025 ETH", "Blockchain": "Linea" }
+              kpis: { "Supply": "Coming Soon", "Price": "0.01 ETH", "Blockchain": "Linea" }
             },
             products: {
               description: "Production and sale of Fluffy Bears plushies and 3D collectibles.",

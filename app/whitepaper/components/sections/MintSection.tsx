@@ -91,7 +91,7 @@ export function MintSection() {
                   <div className="text-sm text-muted-foreground">Available NFTs</div>
                 </div>
                 <div className="text-center p-4 rounded-lg bg-muted">
-                  <div className="text-2xl font-bold text-primary">0.025 ETH</div>
+                  <div className="text-2xl font-bold text-primary">0.01 ETH</div>
                   <div className="text-sm text-muted-foreground">Mint Price</div>
                 </div>
               </div>
