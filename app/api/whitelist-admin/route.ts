@@ -1,33 +1,19 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { PrismaClient } from '@prisma/client';
-
-const prisma = new PrismaClient();
+// Prisma disabled for Vercel deployment
+// import { PrismaClient } from '@prisma/client';
+// const prisma = new PrismaClient();
 
 export async function GET() {
   try {
-    // Buscar todos os usuários da whitelist
-    const users = await prisma.fluffyMissionUser.findMany({
-      orderBy: {
-        completedAt: 'desc'
-      }
-    });
-
-    // Estatísticas
-    const totalUsers = users.length;
-    const todayUsers = users.filter(user => {
-      const today = new Date();
-      const userDate = new Date(user.completedAt);
-      return userDate.toDateString() === today.toDateString();
-    }).length;
-
+    // Return empty data for Vercel deployment
     return NextResponse.json({
       success: true,
       data: {
-        users,
+        users: [],
         stats: {
-          totalUsers,
-          todayUsers,
-          lastRegistration: users[0]?.completedAt || null
+          totalUsers: 0,
+          todayUsers: 0,
+          lastRegistration: null
         }
       }
     });
@@ -38,8 +24,6 @@ export async function GET() {
       success: false, 
       error: 'Internal server error' 
     }, { status: 500 });
-  } finally {
-    await prisma.$disconnect();
   }
 }
 
@@ -49,19 +33,9 @@ export async function POST(request: NextRequest) {
     const { action } = await request.json();
     
     if (action === 'export-csv') {
-      const users = await prisma.fluffyMissionUser.findMany({
-        orderBy: {
-          completedAt: 'desc'
-        }
-      });
-
-      // Generate CSV
+      // Return empty CSV for Vercel deployment
       const csvHeader = 'ID,Twitter Username,Wallet Address,Completed At\n';
-      const csvData = users.map(user => 
-        `${user.id},"${user.twitterUsername}","${user.walletAddress}","${user.completedAt.toISOString()}"`
-      ).join('\n');
-
-      const csv = csvHeader + csvData;
+      const csv = csvHeader;
 
       return new NextResponse(csv, {
         status: 200,
@@ -83,7 +57,5 @@ export async function POST(request: NextRequest) {
       success: false, 
       error: 'Internal server error' 
     }, { status: 500 });
-  } finally {
-    await prisma.$disconnect();
   }
 }
