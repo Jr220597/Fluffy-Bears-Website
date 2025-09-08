@@ -29,7 +29,7 @@ const Header = () => {
 
   const navItems = [
     { label: 'Home', href: '/' },
-    { label: 'Checker', href: '/checker' },
+    { label: 'Twitter Game', href: '/twitter-game' },
     { label: 'Stake', href: '/stake' },
     { label: 'Whitepaper', href: '/whitepaper' },
     { label: 'Shop', href: '#' },

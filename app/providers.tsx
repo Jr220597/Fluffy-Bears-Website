@@ -4,6 +4,8 @@ import { useState, useEffect } from 'react';
 import { WagmiProvider, http } from 'wagmi';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { getDefaultConfig, RainbowKitProvider } from '@rainbow-me/rainbowkit';
+import { SessionProvider } from 'next-auth/react';
+import { Toaster } from 'react-hot-toast';
 import '@rainbow-me/rainbowkit/styles.css';
 
 // Definindo a Linea Mainnet como uma chain customizada
@@ -81,15 +83,27 @@ export function Providers({ children }: { children: React.ReactNode }) {
   }
 
   return (
-    <WagmiProvider config={config}>
-      <QueryClientProvider client={queryClient}>
-        <RainbowKitProvider 
-          locale="en-US"
-          modalSize="compact"
-        >
-          {children}
-        </RainbowKitProvider>
-      </QueryClientProvider>
-    </WagmiProvider>
+    <SessionProvider>
+      <WagmiProvider config={config}>
+        <QueryClientProvider client={queryClient}>
+          <RainbowKitProvider 
+            locale="en-US"
+            modalSize="compact"
+          >
+            <Toaster
+              position="top-right"
+              toastOptions={{
+                duration: 4000,
+                style: {
+                  background: '#363636',
+                  color: '#fff',
+                },
+              }}
+            />
+            {children}
+          </RainbowKitProvider>
+        </QueryClientProvider>
+      </WagmiProvider>
+    </SessionProvider>
   );
 } 

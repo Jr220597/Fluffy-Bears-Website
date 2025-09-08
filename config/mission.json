@@ -1,0 +1,16 @@
+{
+  "postId": "1964728053898350700",
+  "fluffyBearsUsername": "FluffyBearsNFT",
+  "description": "Configuração da missão misteriosa do Fluffy Bears",
+  "instructions": {
+    "pt": "Para alterar o ID do post que será verificado, modifique o campo 'postId' acima com o ID do tweet do Fluffy Bears que os usuários precisam curtir e retweetar.",
+    "en": "To change the post ID that will be verified, modify the 'postId' field above with the Fluffy Bears tweet ID that users need to like and retweet."
+  },
+  "requirements": {
+    "like": true,
+    "retweet": true,
+    "follow": false
+  },
+  "active": true,
+  "lastUpdated": "2025-01-07T00:00:00Z"
+}

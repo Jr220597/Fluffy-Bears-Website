@@ -17,7 +17,27 @@
       "Bash(git add:*)",
       "mcp__ide__getDiagnostics",
       "Bash(git commit:*)",
-      "Bash(git push:*)"
+      "Bash(git push:*)",
+      "Bash(npx prisma init:*)",
+      "Bash(npx prisma generate:*)",
+      "Bash(npx prisma:*)",
+      "Bash(curl:*)",
+      "Bash(dir:*)",
+      "Bash(node:*)",
+      "Bash(npx tsx:*)",
+      "Bash(del test-xlsx.js)",
+      "Bash(mkdir:*)",
+      "Bash(DATABASE_URL=\"file:./dev.db\" npx prisma migrate dev --name init)",
+      "Bash(DATABASE_URL=\"file:./dev.db\" npx prisma migrate reset --force)",
+      "Bash(sqlite3:*)",
+      "Bash(DATABASE_URL=\"file:./dev.db\" npx prisma db pull)",
+      "Bash(DATABASE_URL=\"file:./dev.db\" npx prisma migrate dev --name add-fluffy-mission-user)",
+      "Bash(DATABASE_URL=\"file:./dev.db\" npx prisma db push)",
+      "mcp__context7__resolve-library-id",
+      "mcp__context7__get-library-docs",
+      "Bash(lsof:*)",
+      "Bash(DATABASE_URL=\"file:./dev.db\" npx prisma migrate dev --name remove-ip-data)",
+      "WebFetch(domain:www.cookie.fun)"
     ],
     "deny": []
   }

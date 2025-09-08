@@ -1,0 +1,195 @@
+{
+  "generatedAt": "2025-01-08T12:00:00.000Z",
+  "timeWindows": {
+    "7d": [
+      {
+        "user_id": "sample_user_1",
+        "username": "fluffyfan1",
+        "display_name": "Fluffy Fan #1",
+        "verified": 0,
+        "profile_image": null,
+        "fluffy_followers": 25,
+        "bonus_multiplier": 1.2,
+        "total_score": 342.5,
+        "tweet_count": 15,
+        "avg_score": 22.83,
+        "rank": 1
+      },
+      {
+        "user_id": "sample_user_2",
+        "username": "bearenthusiast",
+        "display_name": "Bear Enthusiast",
+        "verified": 1,
+        "profile_image": "https://example.com/avatar2.jpg",
+        "fluffy_followers": 12,
+        "bonus_multiplier": 1.1,
+        "total_score": 298.7,
+        "tweet_count": 12,
+        "avg_score": 24.89,
+        "rank": 2
+      },
+      {
+        "user_id": "sample_user_3",
+        "username": "honeylover",
+        "display_name": "Honey Lover 🍯",
+        "verified": 0,
+        "profile_image": null,
+        "fluffy_followers": 5,
+        "bonus_multiplier": 1.0,
+        "total_score": 187.3,
+        "tweet_count": 8,
+        "avg_score": 23.41,
+        "rank": 3
+      }
+    ],
+    "30d": [
+      {
+        "user_id": "sample_user_1",
+        "username": "fluffyfan1",
+        "display_name": "Fluffy Fan #1",
+        "verified": 0,
+        "profile_image": null,
+        "fluffy_followers": 25,
+        "bonus_multiplier": 1.2,
+        "total_score": 1285.4,
+        "tweet_count": 47,
+        "avg_score": 27.35,
+        "rank": 1
+      },
+      {
+        "user_id": "sample_user_2",
+        "username": "bearenthusiast",
+        "display_name": "Bear Enthusiast",
+        "verified": 1,
+        "profile_image": "https://example.com/avatar2.jpg",
+        "fluffy_followers": 12,
+        "bonus_multiplier": 1.1,
+        "total_score": 1156.8,
+        "tweet_count": 38,
+        "avg_score": 30.44,
+        "rank": 2
+      },
+      {
+        "user_id": "sample_user_3",
+        "username": "honeylover",
+        "display_name": "Honey Lover 🍯",
+        "verified": 0,
+        "profile_image": null,
+        "fluffy_followers": 5,
+        "bonus_multiplier": 1.0,
+        "total_score": 892.1,
+        "tweet_count": 32,
+        "avg_score": 27.88,
+        "rank": 3
+      },
+      {
+        "user_id": "sample_user_4",
+        "username": "cryptobear",
+        "display_name": "Crypto Bear",
+        "verified": 0,
+        "profile_image": null,
+        "fluffy_followers": 0,
+        "bonus_multiplier": 1.0,
+        "total_score": 623.7,
+        "tweet_count": 28,
+        "avg_score": 22.27,
+        "rank": 4
+      },
+      {
+        "user_id": "sample_user_5",
+        "username": "nftcollector",
+        "display_name": "NFT Collector",
+        "verified": 1,
+        "profile_image": "https://example.com/avatar5.jpg",
+        "fluffy_followers": 8,
+        "bonus_multiplier": 1.0,
+        "total_score": 445.2,
+        "tweet_count": 19,
+        "avg_score": 23.43,
+        "rank": 5
+      }
+    ],
+    "90d": [
+      {
+        "user_id": "sample_user_1",
+        "username": "fluffyfan1",
+        "display_name": "Fluffy Fan #1",
+        "verified": 0,
+        "profile_image": null,
+        "fluffy_followers": 25,
+        "bonus_multiplier": 1.2,
+        "total_score": 3847.2,
+        "tweet_count": 142,
+        "avg_score": 27.09,
+        "rank": 1
+      },
+      {
+        "user_id": "sample_user_2",
+        "username": "bearenthusiast",
+        "display_name": "Bear Enthusiast",
+        "verified": 1,
+        "profile_image": "https://example.com/avatar2.jpg",
+        "fluffy_followers": 12,
+        "bonus_multiplier": 1.1,
+        "total_score": 3125.6,
+        "tweet_count": 118,
+        "avg_score": 26.49,
+        "rank": 2
+      },
+      {
+        "user_id": "sample_user_3",
+        "username": "honeylover",
+        "display_name": "Honey Lover 🍯",
+        "verified": 0,
+        "profile_image": null,
+        "fluffy_followers": 5,
+        "bonus_multiplier": 1.0,
+        "total_score": 2756.8,
+        "tweet_count": 98,
+        "avg_score": 28.13,
+        "rank": 3
+      },
+      {
+        "user_id": "sample_user_4",
+        "username": "cryptobear",
+        "display_name": "Crypto Bear",
+        "verified": 0,
+        "profile_image": null,
+        "fluffy_followers": 0,
+        "bonus_multiplier": 1.0,
+        "total_score": 2234.5,
+        "tweet_count": 87,
+        "avg_score": 25.68,
+        "rank": 4
+      },
+      {
+        "user_id": "sample_user_5",
+        "username": "nftcollector",
+        "display_name": "NFT Collector",
+        "verified": 1,
+        "profile_image": "https://example.com/avatar5.jpg",
+        "fluffy_followers": 8,
+        "bonus_multiplier": 1.0,
+        "total_score": 1892.3,
+        "tweet_count": 65,
+        "avg_score": 29.11,
+        "rank": 5
+      }
+    ]
+  },
+  "stats": {
+    "totalUsers": 5,
+    "totalTweets": 324,
+    "totalScore": 12856.4,
+    "avgScore": 26.82,
+    "topFluffyFollower": {
+      "username": "fluffyfan1",
+      "fluffyFollowers": 25
+    },
+    "processingStatus": {
+      "lastProcessed": "2025-01-08T12:00:00.000Z",
+      "status": "idle",
+      "nextRun": null
+    }
+  }
+}

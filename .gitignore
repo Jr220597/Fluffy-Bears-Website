@@ -25,9 +25,13 @@ yarn-error.log*
 # Local env files
 .env*.local
 
+# Twitter cache
+/data/twitter-cache/
+
 # Vercel
 .vercel
 
 # TypeScript
 *.tsbuildinfo
 next-env.d.ts
+/lib/generated/prisma

@@ -1,0 +1,373 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model Account {
+  id                String  @id
+  userId            String
+  type              String
+  provider          String
+  providerAccountId String
+  refresh_token     String?
+  access_token      String?
+  expires_at        Int?
+  token_type        String?
+  scope             String?
+  id_token          String?
+  session_state     String?
+  User              User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([provider, providerAccountId])
+}
+
+model Badge {
+  id          String      @id
+  name        String      @unique
+  description String
+  icon        String
+  color       String
+  rarity      String
+  requirement String
+  isActive    Boolean     @default(true)
+  createdAt   DateTime    @default(now())
+  UserBadge   UserBadge[]
+}
+
+model Challenge {
+  id                  String                @id
+  title               String
+  description         String
+  type                String
+  points              Int
+  requirement         String
+  startDate           DateTime
+  endDate             DateTime
+  isActive            Boolean               @default(true)
+  maxEntries          Int?
+  createdAt           DateTime              @default(now())
+  ChallengeSubmission ChallengeSubmission[]
+}
+
+model ChallengeSubmission {
+  id             String    @id
+  userId         String
+  challengeId    String
+  submissionUrl  String
+  submissionText String?
+  status         String    @default("pending")
+  pointsAwarded  Int       @default(0)
+  submittedAt    DateTime  @default(now())
+  reviewedAt     DateTime?
+  reviewedBy     String?
+  Challenge      Challenge @relation(fields: [challengeId], references: [id], onDelete: Cascade)
+  User           User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, challengeId])
+}
+
+model EventMultiplier {
+  id            String   @id
+  name          String
+  description   String
+  multiplier    Float
+  activityTypes String
+  startDate     DateTime
+  endDate       DateTime
+  isActive      Boolean  @default(true)
+  createdAt     DateTime @default(now())
+}
+
+model Mission {
+  id              String            @id
+  title           String
+  description     String
+  type            String
+  requirement     String
+  reward          String
+  startDate       DateTime
+  endDate         DateTime
+  isActive        Boolean           @default(true)
+  createdAt       DateTime          @default(now())
+  MissionProgress MissionProgress[]
+}
+
+model MissionProgress {
+  id          String    @id
+  userId      String
+  missionId   String
+  progress    Int       @default(0)
+  completed   Boolean   @default(false)
+  completedAt DateTime?
+  createdAt   DateTime  @default(now())
+  Mission     Mission   @relation(fields: [missionId], references: [id], onDelete: Cascade)
+  User        User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, missionId])
+}
+
+model Notification {
+  id        String   @id
+  userId    String
+  type      String
+  title     String
+  message   String
+  points    Int?
+  badge     String?
+  read      Boolean  @default(false)
+  actionUrl String?
+  createdAt DateTime @default(now())
+  User      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model Session {
+  id           String   @id
+  sessionToken String   @unique
+  userId       String
+  expires      DateTime
+  User         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model TwitterActivity {
+  id           String       @id
+  userId       String
+  activityType String
+  postId       String?
+  targetPostId String?
+  points       Int
+  multiplier   Float        @default(1.0)
+  processed    Boolean      @default(false)
+  metadata     String?
+  createdAt    DateTime     @default(now())
+  TwitterPost  TwitterPost? @relation(fields: [postId], references: [id], onDelete: Cascade)
+  User         User         @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model TwitterPost {
+  id               String            @id
+  userId           String
+  twitterPostId    String            @unique
+  tweetUrl         String?
+  content          String
+  likes            Int               @default(0)
+  retweets         Int               @default(0)
+  replies          Int               @default(0)
+  impressions      Int               @default(0)
+  isFluffyRelated  Boolean           @default(false)
+  hasMedia         Boolean           @default(false)
+  hashtags         String?
+  verified         Boolean           @default(false)
+  moderationStatus String            @default("pending")
+  reportedBy       String            @default("user")
+  pointsAwarded    Int               @default(0)
+  createdAt        DateTime          @default(now())
+  updatedAt        DateTime
+  TwitterActivity  TwitterActivity[]
+  User             User              @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model User {
+  id                  String                @id
+  name                String?
+  email               String?               @unique
+  emailVerified       DateTime?
+  image               String?
+  twitterHandle       String?               @unique
+  twitterId           String?               @unique
+  totalPoints         Int                   @default(0)
+  weeklyPoints        Int                   @default(0)
+  monthlyPoints       Int                   @default(0)
+  dailyPoints         Int                   @default(0)
+  level               Int                   @default(1)
+  streak              Int                   @default(0)
+  lastActiveAt        DateTime              @default(now())
+  createdAt           DateTime              @default(now())
+  updatedAt           DateTime
+  Account             Account[]
+  ChallengeSubmission ChallengeSubmission[]
+  MissionProgress     MissionProgress[]
+  Notification        Notification[]
+  Session             Session[]
+  TwitterActivity     TwitterActivity[]
+  TwitterPost         TwitterPost[]
+  UserBadge           UserBadge[]
+  UserRanking         UserRanking[]
+}
+
+model UserBadge {
+  id       String   @id
+  userId   String
+  badgeId  String
+  earnedAt DateTime @default(now())
+  Badge    Badge    @relation(fields: [badgeId], references: [id], onDelete: Cascade)
+  User     User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, badgeId])
+}
+
+model UserRanking {
+  id           String   @id
+  userId       String
+  period       String
+  rank         Int
+  points       Int
+  calculatedAt DateTime @default(now())
+  User         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, period])
+}
+
+model VerificationToken {
+  identifier String
+  token      String   @unique
+  expires    DateTime
+
+  @@unique([identifier, token])
+}
+
+model FluffyMissionUser {
+  id              Int      @id @default(autoincrement())
+  twitterUsername String   @unique
+  walletAddress   String   @unique
+  completedAt     DateTime @default(now())
+  
+  @@map("fluffy_mission_users")
+}
+
+model FluffyTweet {
+  id               String   @id
+  tweetId          String   @unique
+  authorId         String
+  authorUsername   String
+  text             String
+  createdAt        DateTime
+  type             String   // 'original', 'quote', 'retweet'
+  
+  // Public metrics
+  retweetCount     Int      @default(0)
+  replyCount       Int      @default(0)
+  likeCount        Int      @default(0)
+  quoteCount       Int      @default(0)
+  impressions      Int?     // nullable if not available
+  
+  // Processing flags
+  processed        Boolean  @default(false)
+  processedAt      DateTime?
+  
+  // Relations
+  author           FluffyAccount @relation(fields: [authorId], references: [userId])
+  scores           FluffyScore[]
+  
+  @@index([authorId])
+  @@index([createdAt])
+  @@index([processed])
+  @@map("fluffy_tweets")
+}
+
+model FluffyAccount {
+  id               String   @id @default(cuid())
+  userId           String   @unique
+  username         String   @unique
+  displayName      String?
+  
+  // Account metrics
+  followersCount   Int      @default(0)
+  followingCount   Int      @default(0)
+  tweetsCount      Int      @default(0)
+  verified         Boolean  @default(false)
+  
+  // Account info
+  profileImage     String?
+  createdAt        DateTime
+  description      String?
+  
+  // Bot detection
+  botScore         Float    @default(0)
+  botPenalty       Float    @default(1.0)
+  
+  // Fluffy followers
+  fluffyFollowers  Int      @default(0)
+  bonusMultiplier  Float    @default(1.0)
+  
+  // Processing
+  lastChecked      DateTime @default(now())
+  
+  // Relations
+  tweets           FluffyTweet[]
+  scores           FluffyScore[]
+  
+  @@index([userId])
+  @@index([username])
+  @@index([lastChecked])
+  @@map("fluffy_accounts")
+}
+
+model FluffyScore {
+  id               String   @id @default(cuid())
+  userId           String
+  tweetId          String
+  
+  // Score components
+  rawScore         Float
+  engagementScore  Float
+  reachFactor      Float
+  typeMultiplier   Float
+  originalityBonus Float    @default(0)
+  
+  // Final calculations
+  decayFactor      Float
+  decayedScore     Float
+  bonusMultiplier  Float    @default(1.0)
+  botPenalty       Float    @default(1.0)
+  finalScore       Float
+  
+  // Metadata
+  ageDays          Float
+  computedAt       DateTime @default(now())
+  
+  // Relations
+  account          FluffyAccount @relation(fields: [userId], references: [userId])
+  tweet            FluffyTweet   @relation(fields: [tweetId], references: [tweetId])
+  
+  @@unique([userId, tweetId])
+  @@index([userId])
+  @@index([computedAt])
+  @@index([finalScore])
+  @@map("fluffy_scores")
+}
+
+model FluffyProcessingLog {
+  id               String   @id @default(cuid())
+  processType      String   // 'daily_batch', 'manual_trigger'
+  startedAt        DateTime @default(now())
+  completedAt      DateTime?
+  status           String   // 'running', 'completed', 'failed'
+  
+  // Metrics
+  tweetsProcessed  Int      @default(0)
+  accountsUpdated  Int      @default(0)
+  scoresComputed   Int      @default(0)
+  apiCallsUsed     Int      @default(0)
+  
+  // Results
+  errors           String?  // JSON string of errors
+  summary          String?  // JSON string of processing summary
+  
+  @@index([startedAt])
+  @@index([status])
+  @@map("fluffy_processing_logs")
+}
+
+model FluffyConfig {
+  id               String   @id @default(cuid())
+  key              String   @unique
+  value            String
+  description      String?
+  updatedAt        DateTime @default(now()) @updatedAt
+  
+  @@map("fluffy_config")
+}
